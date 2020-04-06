@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+  <DefaultConnection>Data Source=.\SQLExpress;Initial Catalog=BuildingCondition;Integrated Security=True</DefaultConnection>
+</Root>
