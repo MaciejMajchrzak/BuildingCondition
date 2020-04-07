@@ -1,4 +1,4 @@
-﻿namespace BuildingCondition.Mvc.Models.ViewModels
+﻿namespace BuildingCondition.Mvc.Models.ViewModels.AccountViewModels
 {
     public class LoginViewModel
     {

@@ -1,5 +1,5 @@
 ﻿using BuildingCondition.Db.Models;
-using BuildingCondition.Mvc.Models.ViewModels;
+using BuildingCondition.Mvc.Models.ViewModels.AccountViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -40,8 +40,8 @@ namespace BuildingCondition.Mvc.Controllers
                     UserName = registerViewModel.UserName
                 };
 
-                if (!await roleManager.RoleExistsAsync("ActiveUser")) { await roleManager.CreateAsync(new IdentityRole("ActiveUser")); }
-                if (!await roleManager.RoleExistsAsync("Admin")) { await roleManager.CreateAsync(new IdentityRole("Admin")); }
+                //if (!await roleManager.RoleExistsAsync("ActiveUser")) { await roleManager.CreateAsync(new IdentityRole("ActiveUser")); }
+                //if (!await roleManager.RoleExistsAsync("Admin")) { await roleManager.CreateAsync(new IdentityRole("Admin")); }
 
                 var result = await userManager.CreateAsync(user, registerViewModel.Password);
 

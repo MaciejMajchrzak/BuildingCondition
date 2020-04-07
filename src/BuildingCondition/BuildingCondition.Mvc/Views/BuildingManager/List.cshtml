@@ -1,0 +1,46 @@
+﻿@model ICollection<BuildingCondition.Mvc.Models.ViewModels.BuildingManagerViewModels.BuildingManagerListViewModel>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+@await Html.PartialAsync("_LayoutHeader")
+
+<section>
+    <div class="d-flex justify-content-end">
+        <a asp-controller="BuildingManager" asp-action="Add" class="btn btn-link text-success">
+            <i class="fas fa-plus-square"></i>
+        </a>
+    </div>
+    <table class="table table-sm table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ var count = 0; }
+            @foreach (var buildongManager in Model)
+            {
+                count++;
+                <tr>
+                    <th scope="row">@count</th>
+                    <td>@buildongManager.Name</td>
+                    <td>
+                        <a asp-controller="BuildingManager" asp-action="Details" asp-route-id="@buildongManager.Id" class="btn btn-link text-info">
+                            <i class="fas fa-info"></i>
+                        </a>
+                        <a asp-controller="BuildingManager" asp-action="Edit" asp-route-id="@buildongManager.Id" class="btn btn-link text-warning">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a asp-controller="BuildingManager" asp-action="Delete" asp-route-id="@buildongManager.Id" class="btn btn-link text-danger">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>

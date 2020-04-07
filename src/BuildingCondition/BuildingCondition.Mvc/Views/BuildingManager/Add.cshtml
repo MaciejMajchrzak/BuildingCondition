@@ -1,0 +1,17 @@
+﻿@model BuildingCondition.Mvc.Models.ViewModels.BuildingManagerViewModels.BuildingManagerAddViewModel
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+@await Html.PartialAsync("_LayoutHeader")
+
+<section class="mt-5 d-flex justify-content-center align-items-center text-center">
+    <form asp-controller="BuildingManager" asp-action="Add" method="post">
+        <h1 class="h3 mb-3 font-weight-normal">New building manager</h1>
+        <div class="form-group">
+            <input asp-for="Name" type="text" class="form-control" placeholder="Name">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Add</button>
+    </form>
+</section>
