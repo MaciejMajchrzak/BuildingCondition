@@ -6,7 +6,7 @@ namespace BuildingCondition.Mvc.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Dashboard", null);
         }
     }
 }
