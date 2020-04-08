@@ -1,0 +1,54 @@
+﻿@model BuildingCondition.Mvc.Models.ViewModels.BuildingViewModels.BuildingDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@await Html.PartialAsync("_LayoutHeader")
+
+<section>
+    <h2 class="col">
+        @Model.BuildingManager.Name
+    </h2>
+    <h5 class="col">
+        @Model.Country @Model.State @Model.City @Model.Street @Model.BuildingNumber
+    </h5>
+    <div class="d-flex justify-content-end">
+        <a asp-controller="Apartment" asp-action="Add" class="btn btn-link text-success">
+            <i class="fas fa-plus-square"></i>
+        </a>
+    </div>
+    <table class="table table-sm table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Apartment Number</th>
+                <th scope="col">Gate Number</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ var count = 0; }
+            @foreach (var apartment in Model.Apartments)
+            {
+                count++;
+                <tr>
+                    <th scope="row">@count</th>
+                    <td>@apartment.GateNumber</td>
+                    <td>@apartment.ApartmentNumber</td>
+                    <td>
+                        <a asp-controller="Apartment" asp-action="Details" asp-route-id="@apartment.Id" class="btn btn-link text-info">
+                            <i class="fas fa-info"></i>
+                        </a>
+                        <a asp-controller="Apartment" asp-action="Edit" asp-route-id="@apartment.Id" class="btn btn-link text-warning">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a asp-controller="Apartment" asp-action="Delete" asp-route-id="@apartment.Id" class="btn btn-link text-danger">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
