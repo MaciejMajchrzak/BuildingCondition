@@ -1,20 +1,12 @@
-﻿@model BuildingCondition.Mvc.Models.ViewModels.BuildingManagerViewModels.BuildingManagerDetailsViewModel
+﻿@model BuildingCondition.Mvc.Models.ViewModels.BuildingViewModels.BuildingListViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "List";
 }
 
 @await Html.PartialAsync("_LayoutHeader")
 
 <section>
-    <h2 class="col">
-            @Model.Name
-        </h2>
-    <div class="d-flex justify-content-end">
-        <a asp-controller="Building" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-link text-success">
-            <i class="fas fa-plus-square"></i>
-        </a>
-    </div>
     <table class="table table-sm table-hover">
         <thead>
             <tr>

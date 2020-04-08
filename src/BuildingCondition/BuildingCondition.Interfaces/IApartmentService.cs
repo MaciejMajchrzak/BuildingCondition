@@ -9,6 +9,7 @@ namespace BuildingCondition.Interfaces
         bool Delete(int id);
         Apartment Get(int id);
         IList<Apartment> GetAll();
+        IList<Apartment> GetAllByBuildingId(int id);
         bool Update(Apartment apartment);
     }
 }
