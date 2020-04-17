@@ -43,7 +43,7 @@
                         <a asp-controller="Apartment" asp-action="Edit" asp-route-id="@apartment.Id" class="btn btn-link text-warning">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <a asp-controller="Apartment" asp-action="Delete" asp-route-id="@apartment.Id" class="btn btn-link text-danger">
+                        <a asp-controller="Apartment" asp-action="Delete" asp-route-buildingid="@apartment.BuildingId" asp-route-apartmentid="@apartment.Id" class="btn btn-link text-danger">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>

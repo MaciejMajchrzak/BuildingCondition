@@ -81,6 +81,7 @@ namespace BuildingCondition.Mvc.Controllers
             return View(buildingManagerEditViewModel);
         }
 
+        [HttpPost]
         public IActionResult Edit(BuildingManagerEditViewModel buildingManagerEditViewModel)
         {
             if(ModelState.IsValid)

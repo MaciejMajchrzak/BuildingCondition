@@ -40,8 +40,8 @@ namespace BuildingCondition.Mvc.Controllers
                     UserName = registerViewModel.UserName
                 };
 
-                //if (!await roleManager.RoleExistsAsync("ActiveUser")) { await roleManager.CreateAsync(new IdentityRole("ActiveUser")); }
-                //if (!await roleManager.RoleExistsAsync("Admin")) { await roleManager.CreateAsync(new IdentityRole("Admin")); }
+                if (!await roleManager.RoleExistsAsync("ActiveUser")) { await roleManager.CreateAsync(new IdentityRole("ActiveUser")); }
+                if (!await roleManager.RoleExistsAsync("Admin")) { await roleManager.CreateAsync(new IdentityRole("Admin")); }
 
                 var result = await userManager.CreateAsync(user, registerViewModel.Password);
 
@@ -52,6 +52,7 @@ namespace BuildingCondition.Mvc.Controllers
                     if (login.Succeeded)
                     {
                         await userManager.AddToRoleAsync(await userManager.FindByNameAsync(registerViewModel.UserName), "ActiveUser");
+                        //await userManager.AddToRoleAsync(await userManager.FindByNameAsync(registerViewModel.UserName), "Admin");
 
                         return RedirectToAction("Login", "Account");
                     }
