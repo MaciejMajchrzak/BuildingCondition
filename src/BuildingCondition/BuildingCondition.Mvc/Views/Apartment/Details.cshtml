@@ -1,0 +1,16 @@
+﻿@model BuildingCondition.Mvc.Models.ViewModels.ApartmentViewModels.ApartmentDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@await Html.PartialAsync("_LayoutHeader")
+
+<section>
+    <h2 class="col">
+        @Model.Building.BuildingManager.Name
+    </h2>
+    <h5 class="col">
+        @Model.Building.Country @Model.Building.State @Model.Building.City @Model.Building.Street @Model.Building.BuildingNumber @if (!string.IsNullOrEmpty(Model.ApartmentNumber)) { @Model.ApartmentNumber }
+    </h5>
+</section>
