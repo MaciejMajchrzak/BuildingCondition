@@ -1,0 +1,100 @@
+﻿@model BuildingCondition.Db.Models.User
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> _userManager
+@inject RoleManager<IdentityRole> _roleManager
+@{RoleManager<IdentityRole> roleManager = _roleManager;}
+@{UserManager<IdentityUser> userManager = _userManager;}
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@await Html.PartialAsync("_LayoutHeader")
+
+<section>
+    <h2 class="col">
+        @Model.FirstName @Model.LastName
+    </h2>
+    <h3 class="col">
+        @Model.Email
+    </h3>
+    <div class="row">
+        <div class="col">
+            <h5>Gas Qualification Certificates</h5>
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Certificate Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ var count = 0; }
+                    @foreach (var gasQualificationCertificate in Model.GasQualificationCertificates)
+                    {
+                        count++;
+                        <tr>
+                            <th scope="row">@count</th>
+                            <td>@gasQualificationCertificate.CertificateNumber</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <h5>Electrical Qualification Certificates</h5>
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Certificate Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ count = 0; }
+                    @foreach (var electricalQualificationCertificate in Model.ElectricalQualificationCertificates)
+                    {
+                        count++;
+                        <tr>
+                            <th scope="row">@count</th>
+                            <td>@electricalQualificationCertificate.CertificateNumber</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <h5>Permissions</h5>
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Role</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ count = 0; }
+                    @foreach (var role in roleManager.Roles)
+                    {
+                        count++;
+                        <tr>
+                            <th scope="row">@count</th>
+                            <td>@role.Name</td>
+                            <td>
+                                @*@if (userManager.IsInRoleAsync(Model, role.Name).Result)
+                                {
+                                    <i class="fas fa-lock"></i>
+                                }
+                                @if (!userManager.IsInRoleAsync(Model, role.Name).Result)
+                                {
+                                    <i class="fas fa-lock-open"></i>
+                                }*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

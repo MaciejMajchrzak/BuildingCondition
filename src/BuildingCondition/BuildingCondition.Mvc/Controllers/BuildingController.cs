@@ -1,6 +1,5 @@
 ﻿using BuildingCondition.Db.Models;
 using BuildingCondition.Interfaces;
-using BuildingCondition.Mvc.Models.ViewModels.BuildingManagerViewModels;
 using BuildingCondition.Mvc.Models.ViewModels.BuildingViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -75,16 +74,9 @@ namespace BuildingCondition.Mvc.Controllers
 
                 BuildingManager buildingManager = buildingManagerService.Get(buildingAddViewModel.BuildingManagerId);
 
-                ICollection<Building> buildings = buildingService.GetAllByBuildingManagerId(buildingAddViewModel.BuildingManagerId);
+                buildingManager.Buildings = buildingService.GetAllByBuildingManagerId(buildingAddViewModel.BuildingManagerId);
 
-                BuildingManagerDetailsViewModel buildingManagerDetailsViewModel = new BuildingManagerDetailsViewModel()
-                {
-                    Id = buildingManager.Id,
-                    Name = buildingManager.Name,
-                    Buildings = buildings
-                };
-
-                return RedirectToAction("Details", "BuildingManager", buildingManagerDetailsViewModel);
+                return RedirectToAction("Details", "BuildingManager", buildingManager);
             }
 
             return RedirectToAction("Add", "Building", buildingAddViewModel);
@@ -97,16 +89,9 @@ namespace BuildingCondition.Mvc.Controllers
 
             BuildingManager buildingManager = buildingManagerService.Get(buildingManagerId);
 
-            ICollection<Building> buildings = buildingService.GetAllByBuildingManagerId(buildingManagerId);
+            buildingManager.Buildings = buildingService.GetAllByBuildingManagerId(buildingManagerId);
 
-            BuildingManagerDetailsViewModel buildingManagerDetailsViewModel = new BuildingManagerDetailsViewModel()
-            {
-                Id = buildingManager.Id,
-                Name = buildingManager.Name,
-                Buildings = buildings
-            };
-
-            return RedirectToAction("Details", "BuildingManager", buildingManagerDetailsViewModel);
+            return RedirectToAction("Details", "BuildingManager", buildingManager);
         }
 
         [HttpGet]
@@ -115,76 +100,34 @@ namespace BuildingCondition.Mvc.Controllers
 
             Building building = buildingService.Get(id);
 
-            BuildingManager buildingManager = buildingManagerService.Get(building.BuildingManagerId);
+            building.BuildingManager = buildingManagerService.Get(building.BuildingManagerId);
 
-            ICollection<Apartment> apartments = apartmentService.GetAllByBuildingId(id);
+            building.Apartments = apartmentService.GetAllByBuildingId(id);
 
-            BuildingDetailsViewModel buildingDetailsViewModel = new BuildingDetailsViewModel()
-            {
-                Country = building.Country,
-                State = building.Street,
-                City = building.City,
-                Street = building.Street,
-                BuildingNumber = building.BuildingNumber,
-                BuildingManager = buildingManager,
-                Apartments = apartments
-            };
-
-            return View(buildingDetailsViewModel);
+            return View(building);
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            Building building = buildingService.Get(id);
-
-            BuildingEditViewModel buildingEditViewModel = new BuildingEditViewModel()
-            {
-                Id = building.Id,
-                Country = building.Country,
-                State = building.State,
-                City = building.City,
-                Street = building.Street,
-                BuildingNumber = building.BuildingNumber,
-                BuildingManagerId = building.BuildingManagerId
-            };
-
-            return View(buildingEditViewModel);
+            return View(buildingService.Get(id));
         }
 
         [HttpPost]
-        public IActionResult Edit(BuildingEditViewModel buildingEditViewModel)
+        public IActionResult Edit(Building building)
         {
             if(ModelState.IsValid)
             {
-                Building building = new Building()
-                {
-                    Id = buildingEditViewModel.Id,
-                    Country = buildingEditViewModel.Country,
-                    State = buildingEditViewModel.State,
-                    City = buildingEditViewModel.City,
-                    Street = buildingEditViewModel.Street,
-                    BuildingNumber = buildingEditViewModel.BuildingNumber,
-                    BuildingManagerId = buildingEditViewModel.BuildingManagerId
-                };
+               buildingService.Update(building);
 
-                buildingService.Update(building);
+                BuildingManager buildingManager = buildingManagerService.Get(building.BuildingManagerId);
 
-                BuildingManager buildingManager = buildingManagerService.Get(buildingEditViewModel.BuildingManagerId);
+                buildingManager.Buildings = buildingService.GetAllByBuildingManagerId(building.BuildingManagerId);
 
-                ICollection<Building> buildings = buildingService.GetAllByBuildingManagerId(buildingEditViewModel.BuildingManagerId);
-
-                BuildingManagerDetailsViewModel buildingManagerDetailsViewModel = new BuildingManagerDetailsViewModel()
-                {
-                    Id = buildingManager.Id,
-                    Name = buildingManager.Name,
-                    Buildings = buildings
-                };
-
-                return RedirectToAction("Details", "BuildingManager", buildingManagerDetailsViewModel);
+                return RedirectToAction("Details", "BuildingManager", buildingManager);
             }
 
-            return View(buildingEditViewModel);
+            return View(building);
         }
 
         [HttpGet]

@@ -1,10 +1,10 @@
-﻿@model BuildingCondition.Mvc.Models.ViewModels.DashboardViewModels.DashboardUsersViewModel
+﻿@model ICollection<BuildingCondition.Db.Models.User>
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<IdentityUser> _userManager
 @{UserManager<IdentityUser> userManager = _userManager;}
 
 @{
-    ViewData["Title"] = "Users";
+    ViewData["Title"] = "List";
 }
 
 @await Html.PartialAsync("_LayoutHeader")
@@ -27,7 +27,7 @@
         <tbody>
 
             @{ var count = 0; }
-            @foreach (var user in Model.Users)
+            @foreach (var user in Model)
             {
                 count++;
                 <tr>
@@ -35,21 +35,21 @@
                     <td>@user.LastName</td>
                     <td>@user.FirstName</td>
                     <td>
-                        <a asp-controller="Dashboard" asp-action="UserDetails" asp-route-id="@user.Id" class="btn btn-link text-info">
+                        <a asp-controller="User" asp-action="Details" asp-route-id="@user.Id" class="btn btn-link text-info">
                             <i class="fas fa-info"></i>
                         </a>
-                        <a asp-controller="Dashboard" asp-action="UserEdit" asp-route-id="@user.Id" class="btn btn-link text-warning">
+                        <a asp-controller="User" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-link text-warning">
                             <i class="fas fa-edit"></i>
                         </a>
                         @if (userManager.IsInRoleAsync(user, "ActiveUser").Result)
                         {
-                            <a asp-controller="Dashboard" asp-action="UserLock" asp-route-id="@user.Id" class="btn btn-link text-danger">
+                            <a asp-controller="User" asp-action="Lock" asp-route-id="@user.Id" class="btn btn-link text-danger">
                                 <i class="fas fa-lock"></i>
                             </a>
                         }
                         @if (!userManager.IsInRoleAsync(user, "ActiveUser").Result)
                         {
-                            <a asp-controller="Dashboard" asp-action="UserUnlock" asp-route-id="@user.Id" class="btn btn-link text-success">
+                            <a asp-controller="User" asp-action="Unlock" asp-route-id="@user.Id" class="btn btn-link text-success">
                                 <i class="fas fa-lock-open"></i>
                             </a>
                         }

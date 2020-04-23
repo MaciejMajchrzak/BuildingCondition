@@ -19,8 +19,9 @@ namespace BuildingCondition.Db.Context
         public DbSet<BuildingGasInstalationReport> BuildingGasInstalationReports { get; set; }
         public DbSet<BuildingManager> BuildingManagers { get; set; }
         public DbSet<ElectricalInstallationParametersMeter> ElectricalInstallationParametersMeters { get; set; }
+        public DbSet<ElectricalQualificationCertificate> ElectricalQualificationCertificates { get; set; }
         public DbSet<GasDetector> GasDetectors { get; set; }
-        public DbSet<QualificationCertificate> QualificationCertificates { get; set; }
+        public DbSet<GasQualificationCertificate> GasQualificationCertificates { get; set; }
         public DbSet<User> Users { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model BuildingCondition.Mvc.Models.ViewModels.ApartmentViewModels.ApartmentDetailsViewModel
+﻿@model BuildingCondition.Db.Models.Apartment
 
 @{
     ViewData["Title"] = "Details";
@@ -11,6 +11,7 @@
         @Model.Building.BuildingManager.Name
     </h2>
     <h5 class="col">
-        @Model.Building.Country @Model.Building.State @Model.Building.City @Model.Building.Street @Model.Building.BuildingNumber @if (!string.IsNullOrEmpty(Model.ApartmentNumber)) { @Model.ApartmentNumber }
+        @Model.Building.Country @Model.Building.State @Model.Building.City @Model.Building.Street @Model.Building.BuildingNumber @if (!string.IsNullOrEmpty(Model.ApartmentNumber))
+        {@Model.ApartmentNumber}
     </h5>
 </section>

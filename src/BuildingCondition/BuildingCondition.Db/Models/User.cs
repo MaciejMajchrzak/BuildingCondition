@@ -12,6 +12,7 @@ namespace BuildingCondition.Db.Models
         public ICollection<ApartmentGasInstalationReport> ApartmentGasInstalationReports { get; set; }
         public ICollection<BuildingElectricalInstalationReport> BuildingElectricalInstalationReports { get; set; }
         public ICollection<BuildingGasInstalationReport> BuildingGasInstalationReports { get; set; }
-        public ICollection<QualificationCertificate> QualificationCertificates { get; set; }
+        public ICollection<ElectricalQualificationCertificate> ElectricalQualificationCertificates { get; set; }
+        public ICollection<GasQualificationCertificate> GasQualificationCertificates { get; set; }
     }
 }

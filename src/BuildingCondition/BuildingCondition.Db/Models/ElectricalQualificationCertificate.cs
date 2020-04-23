@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BuildingCondition.Db.Models
 {
-    public class QualificationCertificate
+    public class ElectricalQualificationCertificate
     {
         public int Id { get; set; }
 
