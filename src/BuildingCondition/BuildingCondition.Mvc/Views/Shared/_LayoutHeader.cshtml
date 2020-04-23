@@ -22,7 +22,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="Dashboard" asp-action="Users" class="nav-link">
+                    <a asp-controller="User" asp-action="List" class="nav-link">
                         <i class="fas fa-users"></i>
                         Users
                     </a>
@@ -42,7 +42,7 @@
                             User
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Profile</a>
+                            <a asp-controller="User" asp-action="Profile" class="dropdown-item">Profile</a>
                             <div class="dropdown-divider"></div>
                             <a asp-controller="Account" asp-action="Logout" class="dropdown-item">Log out</a>
                         </div>

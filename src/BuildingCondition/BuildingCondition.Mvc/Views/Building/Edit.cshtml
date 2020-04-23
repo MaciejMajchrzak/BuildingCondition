@@ -1,4 +1,4 @@
-﻿@model BuildingCondition.Mvc.Models.ViewModels.BuildingViewModels.BuildingEditViewModel
+﻿@model BuildingCondition.Db.Models.Building
 
 @{
     ViewData["Title"] = "Edit";
@@ -24,6 +24,6 @@
         <div class="form-group">
             <input asp-for="BuildingNumber" type="text" class="form-control" placeholder="Building number">
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Edit</button>
+        <button type="submit" class="btn btn-primary btn-block">Save</button>
     </form>
 </section>

@@ -1,9 +1,6 @@
 ﻿using BuildingCondition.Db.Models;
 using BuildingCondition.Interfaces;
-using BuildingCondition.Mvc.Models.ViewModels.ApartmentViewModels;
-using BuildingCondition.Mvc.Models.ViewModels.BuildingViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace BuildingCondition.Mvc.Controllers
 {
@@ -26,52 +23,31 @@ namespace BuildingCondition.Mvc.Controllers
         [HttpGet]
         public IActionResult Add(int id)
         {
-            Building building = buildingService.Get(id);
-
-            ApartmentAddViewModel apartmentAddViewModel = new ApartmentAddViewModel()
+            Apartment apartment = new Apartment()
             {
-                Building = building
+                BuildingId = id
             };
 
-            return View(apartmentAddViewModel);
+            return View(apartment);
         }
 
         [HttpPost]
-        public IActionResult Add(ApartmentAddViewModel apartmentAddViewModel)
+        public IActionResult Add(Apartment apartment)
         {
             if(ModelState.IsValid)
             {
-                Apartment apartment = new Apartment()
-                {
-                    ApartmentNumber = apartmentAddViewModel.ApartmentNumber,
-                    GateNumber = apartmentAddViewModel.GateNumber,
-                    BuildingId = apartmentAddViewModel.BuildingId
-                };
-
                 apartmentService.Create(apartment);
 
                 Building building = buildingService.Get(apartment.BuildingId);
 
-                BuildingManager buildingManager = buildingManagerService.Get(building.BuildingManagerId);
+                building.BuildingManager = buildingManagerService.Get(building.BuildingManagerId);
 
-                ICollection<Apartment> apartments = apartmentService.GetAllByBuildingId(apartment.BuildingId);
+                building.Apartments = apartmentService.GetAllByBuildingId(apartment.BuildingId);
 
-                BuildingDetailsViewModel buildingDetailsViewModel = new BuildingDetailsViewModel()
-                {
-                    Id = building.Id,
-                    Country = building.Country,
-                    State = building.Street,
-                    City = building.City,
-                    Street = building.Street,
-                    BuildingNumber = building.BuildingNumber,
-                    BuildingManager = buildingManager,
-                    Apartments = apartments
-                };
-
-                return RedirectToAction("Details", "Building", buildingDetailsViewModel);
+                return RedirectToAction("Details", "Building", building);
             }
 
-            return View(apartmentAddViewModel);
+            return View(apartment);
         }
 
         [HttpGet]
@@ -81,23 +57,11 @@ namespace BuildingCondition.Mvc.Controllers
 
             Building building = buildingService.Get(buildingId);
 
-            BuildingManager buildingManager = buildingManagerService.Get(building.BuildingManagerId);
+            building.BuildingManager = buildingManagerService.Get(building.BuildingManagerId);
 
-            ICollection<Apartment> apartments = apartmentService.GetAllByBuildingId(buildingId);
+            building.Apartments = apartmentService.GetAllByBuildingId(buildingId);
 
-            BuildingDetailsViewModel buildingDetailsViewModel = new BuildingDetailsViewModel()
-            {
-                Id = building.Id,
-                Country = building.Country,
-                State = building.Street,
-                City = building.City,
-                Street = building.Street,
-                BuildingNumber = building.BuildingNumber,
-                BuildingManager = buildingManager,
-                Apartments = apartments
-            };
-
-            return RedirectToAction("Details", "Building", buildingDetailsViewModel);
+            return RedirectToAction("Details", "Building", building);
         }
 
         [HttpGet]
@@ -105,76 +69,36 @@ namespace BuildingCondition.Mvc.Controllers
         {
             Apartment apartment = apartmentService.Get(id);
 
-            Building building = buildingService.Get(apartment.BuildingId);
+            apartment.Building = buildingService.Get(apartment.BuildingId);
 
-            BuildingManager buildingManager = buildingManagerService.Get(building.BuildingManagerId);
+            apartment.Building.BuildingManager = buildingManagerService.Get(apartment.Building.BuildingManagerId);
 
-            building.BuildingManager = buildingManager;
-
-            ApartmentDetailsViewModel apartmentDetailsViewModel = new ApartmentDetailsViewModel()
-            {
-                Id = apartment.Id,
-                ApartmentNumber = apartment.ApartmentNumber,
-                GateNumber = apartment.GateNumber,
-                Building = building
-            };
-
-            return View(apartmentDetailsViewModel);
+            return View(apartment);
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            Apartment apartment = apartmentService.Get(id);
-
-            ApartmentEditViewModel apartmentEditViewModel = new ApartmentEditViewModel()
-            {
-                Id = apartment.Id,
-                ApartmentNumber = apartment.ApartmentNumber,
-                GateNumber = apartment.GateNumber,
-                BuildingId = apartment.BuildingId
-            };
-
-            return View(apartmentEditViewModel);
+            return View(apartmentService.Get(id));
         }
 
         [HttpPost]
-        public IActionResult Edit(ApartmentEditViewModel apartmentEditViewModel)
+        public IActionResult Edit(Apartment apartment)
         {
             if(ModelState.IsValid)
             {
-                Apartment apartment = new Apartment()
-                {
-                    Id = apartmentEditViewModel.Id,
-                    ApartmentNumber = apartmentEditViewModel.ApartmentNumber,
-                    GateNumber = apartmentEditViewModel.GateNumber,
-                    BuildingId = apartmentEditViewModel.BuildingId
-                };
-
                 apartmentService.Update(apartment);
 
                 Building building = buildingService.Get(apartment.BuildingId);
 
-                BuildingManager buildingManager = buildingManagerService.Get(building.BuildingManagerId);
+                building.BuildingManager = buildingManagerService.Get(building.BuildingManagerId);
 
-                ICollection<Apartment> apartments = apartmentService.GetAllByBuildingId(apartment.BuildingId);
+                building.Apartments = apartmentService.GetAllByBuildingId(apartment.BuildingId);
 
-                BuildingDetailsViewModel buildingDetailsViewModel = new BuildingDetailsViewModel()
-                {
-                    Id = building.Id,
-                    Country = building.Country,
-                    State = building.Street,
-                    City = building.City,
-                    Street = building.Street,
-                    BuildingNumber = building.BuildingNumber,
-                    BuildingManager = buildingManager,
-                    Apartments = apartments
-                };
-
-                return RedirectToAction("Details", "Building", buildingDetailsViewModel);
+                return RedirectToAction("Details", "Building", building);
             }
 
-            return View(apartmentEditViewModel);
+            return View(apartment);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model  BuildingCondition.Mvc.Models.ViewModels.ApartmentViewModels.ApartmentEditViewModel
+﻿@model BuildingCondition.Db.Models.Apartment
 
 @{
     ViewData["Title"] = "Edit";
@@ -7,7 +7,7 @@
 @await Html.PartialAsync("_LayoutHeader")
 
 <section class="mt-5 d-flex justify-content-center align-items-center text-center">
-    <form asp-controller="Apartment" asp-action="Add" method="post">
+    <form asp-controller="Apartment" asp-action="Edit" method="post">
         <h1 class="h3 mb-3 font-weight-normal">New apartment</h1>
         <input type="hidden" asp-for="Id" />
         <input type="hidden" asp-for="BuildingId" />
@@ -17,6 +17,6 @@
         <div class="form-group">
             <input asp-for="GateNumber" type="text" value="@Model.GateNumber" class="form-control" placeholder="Gate number">
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Edit</button>
+        <button type="submit" class="btn btn-primary btn-block">Save</button>
     </form>
 </section>

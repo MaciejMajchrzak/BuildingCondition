@@ -44,10 +44,12 @@ namespace BuildingCondition.Mvc
             services.AddScoped<IBuildingService, BuildingService>();
             
             services.AddScoped<IElectricalInstallationParametersMeterService, ElectricalInstallationParametersMeterService>();
-            
+
+            services.AddScoped<IElectricalQualificationCertificateService, ElectricalQualificationCertificateService>();
+
             services.AddScoped<IGasDetectorService, GasDetectorService>();
             
-            services.AddScoped<IQualificationCertificateService, QualificationCertificateService>();
+            services.AddScoped<IGasQualificationCertificateService, GasQualificationCertificateService>();
             
             services.AddScoped<IUserService, UserService>();
 
@@ -73,7 +75,7 @@ namespace BuildingCondition.Mvc
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Dashboard}/{action=Index}/{id?}");
             });
         }
     }
