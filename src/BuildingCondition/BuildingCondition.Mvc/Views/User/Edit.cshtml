@@ -11,145 +11,168 @@
 
 @await Html.PartialAsync("_LayoutHeader")
 
-<section class="justify-content-center align-items-center text-center">
-    <div class="row justify-content-center align-items-center text-center">
-        <h1 class="h3 mb-3 font-weight-normal">Edit user data</h1>
-    </div>
-    <div class="row mt-5">
-        <div class="col">
-            <form asp-controller="User" asp-action="EditData" method="post">
-                <input type="hidden" asp-for="Id" />
-                <div class="form-group">
-                    <input asp-for="FirstName" type="text" class="form-control" placeholder="First Name">
+<section>
+    <div class="row mx-1 my-1">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <form asp-controller="User" asp-action="EditData" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group">
+                            <input asp-for="FirstName" type="text" class="form-control" placeholder="First Name">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="LastName" type="text" class="form-control" placeholder="Last Name">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Email" type="email" class="form-control" placeholder="E-mail">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <input asp-for="LastName" type="text" class="form-control" placeholder="Last Name">
-                </div>
-                <div class="form-group">
-                    <input asp-for="Email" type="email" class="form-control" placeholder="E-mail">
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Save</button>
-            </form>
-        </div>
-        <div class="col">
-            <form asp-controller="User" asp-action="EditPassword" method="post">
-                <input type="hidden" asp-for="Id" />
-                <div class="form-group">
-                    <input asp-for="PasswordHash" type="password" class="form-control" placeholder="Password">
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Save</button>
-            </form>
-        </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col">
-            <h5>Gas Qualification Certificates</h5>
-            <div class="d-flex justify-content-end">
-                <a asp-controller="Certificate" asp-action="AddGas" class="btn btn-link text-success">
-                    <i class="fas fa-plus-square"></i>
-                </a>
             </div>
-            <table class="table table-sm table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Certificate Number</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{ var count = 0; }
-                    @foreach (var gasQualificationCertificate in Model.GasQualificationCertificates)
-                    {
-                        count++;
-                        <tr>
-                            <th scope="row">@count</th>
-                            <td>@gasQualificationCertificate.CertificateNumber</td>
-                            <td>
-                                <a asp-controller="Certificate" asp-action="GasEdit" asp-route-id="@gasQualificationCertificate.Id" class="btn btn-link text-warning">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <a asp-controller="Certificate" asp-action="GasDelete" asp-route-id="@gasQualificationCertificate.Id" class="btn btn-link text-danger">
-                                    <i class="fas fa-trash-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
         </div>
-        <div class="col">
-            <h5>Electrical Qualification Certificates</h5>
-            <div class="d-flex justify-content-end">
-                <a asp-controller="Certificate" asp-action="AddElectrical" class="btn btn-link text-success">
-                    <i class="fas fa-plus-square"></i>
-                </a>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <form asp-controller="User" asp-action="EditPassword" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group">
+                            <input asp-for="PasswordHash" type="password" class="form-control" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
             </div>
-            <table class="table table-sm table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Certificate Number</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{ count = 0; }
-                    @foreach (var electricalQualificationCertificate in Model.ElectricalQualificationCertificates)
-                    {
-                        count++;
-                        <tr>
-                            <th scope="row">@count</th>
-                            <td>@electricalQualificationCertificate.CertificateNumber</td>
-                            <td>
-                                <a asp-controller="Certificate" asp-action="ElectricalEdit" asp-route-id="@electricalQualificationCertificate.Id" class="btn btn-link text-warning">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <a asp-controller="Certificate" asp-action="ElectricalDelete" asp-route-id="@electricalQualificationCertificate.Id" class="btn btn-link text-danger">
-                                    <i class="fas fa-trash-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
         </div>
-        <div class="col">
-            <h5>Permissions</h5>
-            <table class="table table-sm table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Role</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{ count = 0; }
-                    @foreach (var role in roleManager.Roles)
-                    {
-                        count++;
-                        <tr>
-                            <th scope="row">@count</th>
-                            <td>@role.Name</td>
-                            <td>
-                                @*@if (userManager.IsInRoleAsync(Model, role.Name).Result)
-                                {
-                                    <a asp-controller="User" asp-action="RemoveFromRole" asp-route-userid="@Model.Id" asp-route-rolename="@role.Name" class="btn btn-link text-danger">
-                                        <i class="fas fa-lock"></i>
-                                    </a>
-                                }
-                                @if (!userManager.IsInRoleAsync(Model, role.Name).Result)
-                                {
-                                    <a asp-controller="User" asp-action="AddToRole" asp-route-userid="@Model.Id" asp-route-rolename="@role.Name" class="btn btn-link text-success">
-                                        <i class="fas fa-lock-open"></i>
-                                    </a>
-                                }*@
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+    </div>
+    <div class="row mx-1 my-1">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <p>Gas Qualification Certificate</p>
+                    <div class="row mb-2">
+                        <div class="col-sm-4">
+                            <a asp-controller="Certificate" asp-action="AddGas" asp-route-id="@Model.Id" class="btn btn-success mb-2">
+                                <i class="fas fa-plus-square"></i>
+                                Add
+                            </a>
+                        </div>
+                    </div>
+                    <table class="table table-centered mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Certificate Number</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ var count = 0; }
+                            @foreach (var gasQualificationCertificate in Model.GasQualificationCertificates)
+                            {
+                                count++;
+                                <tr>
+                                    <td scope="row">@count</td>
+                                    <td>@gasQualificationCertificate.CertificateNumber</td>
+                                    <td>
+                                        <a asp-controller="Certificate" asp-action="EditGas" asp-route-id="@gasQualificationCertificate.Id" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-controller="Certificate" asp-action="DeleteGas" asp-route-gasid="@gasQualificationCertificate.Id" asp-route-userid="@Model.Id" class="btn btn-link text-danger" data-toggle="tooltip" data-placement="top" title="Delete">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <p>Electrical Qualification Certificate</p>
+                    <div class="row mb-2">
+                        <div class="col-sm-4">
+                            <a asp-controller="Certificate" asp-action="AddElectrical" asp-route-id="@Model.Id" class="btn btn-success mb-2">
+                                <i class="fas fa-plus-square"></i>
+                                Add
+                            </a>
+                        </div>
+                    </div>
+                    <table class="table table-centered mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Certificate Number</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ count = 0; }
+                            @foreach (var electricalQualificationCertificate in Model.ElectricalQualificationCertificates)
+                            {
+                                count++;
+                                <tr>
+                                    <td scope="row">@count</td>
+                                    <td>@electricalQualificationCertificate.CertificateNumber</td>
+                                    <td>
+                                        <a asp-controller="Certificate" asp-action="EditElectrical" asp-route-id="@electricalQualificationCertificate.Id" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-controller="Certificate" asp-action="DeleteElectrical" asp-route-electricalid="@electricalQualificationCertificate.Id" asp-route-userid="@Model.Id" class="btn btn-link text-danger" data-toggle="tooltip" data-placement="top" title="Delete">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <p>Permissions</p>
+                    <table class="table table-centered mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Role</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ count = 0; }
+                            @foreach (var role in roleManager.Roles)
+                            {
+                                count++;
+                                <tr>
+                                    <td scope="row">@count</td>
+                                    <td>@role.Name</td>
+                                    <td>
+                                        @*@if (userManager.IsInRoleAsync(Model, role.Name).Result)
+                                        {
+                                            <a asp-controller="User" asp-action="RemoveFromRole" asp-route-userid="@Model.Id" asp-route-rolename="@role.Name" class="btn btn-link text-danger" data-toggle="tooltip" data-placement="top" title="Remove from role">
+                                                <i class="fas fa-lock"></i>
+                                            </a>
+                                        }
+                                        @if (!userManager.IsInRoleAsync(Model, role.Name).Result)
+                                        {
+                                            <a asp-controller="User" asp-action="AddToRole" asp-route-userid="@Model.Id" asp-route-rolename="@role.Name" class="btn btn-link text-success" data-toggle="tooltip" data-placement="top" title="Add to role">
+                                                <i class="fas fa-lock-open"></i>
+                                            </a>
+                                        }*@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </section>

@@ -7,40 +7,51 @@
 @await Html.PartialAsync("_LayoutHeader")
 
 <section>
-    <div class="d-flex justify-content-end">
-        <a asp-controller="BuildingManager" asp-action="Add" class="btn btn-link text-success">
-            <i class="fas fa-plus-square"></i>
-        </a>
+    <div class="row mx-1 my-1">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-sm-4">
+                            <a asp-controller="BuildingManager" asp-action="Add" class="btn btn-success mb-2">
+                                <i class="fas fa-plus-square"></i>
+                                Add
+                            </a>
+                        </div>
+                    </div>
+                    <table class="table table-centered mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ var count = 0; }
+                            @foreach (var buildongManager in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <td scope="row">@count</td>
+                                    <td>@buildongManager.Name</td>
+                                    <td>
+                                        <a asp-controller="BuildingManager" asp-action="Details" asp-route-id="@buildongManager.Id" class="btn btn-link text-info" data-toggle="tooltip" data-placement="top" title="Details">
+                                            <i class="fas fa-info"></i>
+                                        </a>
+                                        <a asp-controller="BuildingManager" asp-action="Edit" asp-route-id="@buildongManager.Id" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-controller="BuildingManager" asp-action="Delete" asp-route-id="@buildongManager.Id" class="btn btn-link text-danger" data-toggle="tooltip" data-placement="top" title="Delete">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-    <table class="table table-sm table-hover">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @{ var count = 0; }
-            @foreach (var buildongManager in Model)
-            {
-                count++;
-                <tr>
-                    <th scope="row">@count</th>
-                    <td>@buildongManager.Name</td>
-                    <td>
-                        <a asp-controller="BuildingManager" asp-action="Details" asp-route-id="@buildongManager.Id" class="btn btn-link text-info">
-                            <i class="fas fa-info"></i>
-                        </a>
-                        <a asp-controller="BuildingManager" asp-action="Edit" asp-route-id="@buildongManager.Id" class="btn btn-link text-warning">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <a asp-controller="BuildingManager" asp-action="Delete" asp-route-id="@buildongManager.Id" class="btn btn-link text-danger">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
 </section>

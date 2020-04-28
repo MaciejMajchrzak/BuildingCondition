@@ -1,0 +1,32 @@
+﻿@model BuildingCondition.Db.Models.ElectricalQualificationCertificate
+
+@{
+    ViewData["Title"] = "EditElectrical";
+}
+
+@await Html.PartialAsync("_LayoutHeader")
+
+<section>
+    <div class="row mx-1 my-1">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <p>Edit electrical certificate</p>
+                    <form asp-controller="Certificate" asp-action="AddElectrical" method="post">
+                        <input type="hidden" asp-for="UserId" />
+                        <div class="form-group">
+                            <input asp-for="CertificateNumber" type="text" class="form-control" placeholder="Certificate number">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="ExpirationDate" type="date" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="ReleaseDate" type="date" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
