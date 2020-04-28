@@ -11,66 +11,73 @@
     if (Model.Apartments != null) { aspAction = "AddConfirm"; }
  }
 
-<section class="mt-5 d-flex justify-content-center align-items-center text-center">
-    <form asp-controller="Building" asp-action="@aspAction" method="post">
-        <h1 class="h3 mb-3 font-weight-normal">New building</h1>
-        <input type="hidden" asp-for="BuildingManagerId" />
-        <div class="form-group">
-            <input asp-for="Country" type="text" class="form-control" placeholder="Country">
-        </div>
-        <div class="form-group">
-            <input asp-for="State" type="text" class="form-control" placeholder="State">
-        </div>
-        <div class="form-group">
-            <input asp-for="City" type="text" class="form-control" placeholder="City">
-        </div>
-        <div class="form-group">
-            <input asp-for="Street" type="text" class="form-control" placeholder="Street">
-        </div>
-        <div class="row">
-            <div class="col form-group">
-                <input asp-for="BuildingNumber" type="text" class="form-control" placeholder="Building number">
+<section>
+    <div class="row mx-1 my-1">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <p>Edit building</p>
+                    <form asp-controller="Building" asp-action="@aspAction" method="post">
+                        <input type="hidden" asp-for="BuildingManagerId" />
+                        <div class="form-group">
+                            <input asp-for="Country" type="text" class="form-control" placeholder="Country">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="State" type="text" class="form-control" placeholder="State">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="City" type="text" class="form-control" placeholder="City">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Street" type="text" class="form-control" placeholder="Street">
+                        </div>
+                        <div class="row">
+                            <div class="col form-group">
+                                <input asp-for="BuildingNumber" type="text" class="form-control" placeholder="Building number">
+                            </div>
+                            <div class="col form-group">
+                                <input asp-for="NumberOfApartments" type="number" class="form-control" placeholder="Number of apatments">
+                            </div>
+                            <div class="col form-group">
+                                <input asp-for="NumberOfGates" type="number" class="form-control" placeholder="Number of gates">
+                            </div>
+                        </div>
+                        @if (Model.Apartments != null)
+                        {
+                            <table class="table table-sm table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Apartment Number</th>
+                                        <th>Gate Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ var count = 0; }
+                                    @foreach (var apartment in Model.Apartments)
+                                    {
+                                        count++;
+                                        <tr>
+                                            <td scope="row">@count</td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <input asp-for="Apartments[count - 1].ApartmentNumber" value="@apartment.ApartmentNumber" type="text" class="form-control" placeholder="Apartment Number">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <input asp-for="Apartments[count - 1].GateNumber" value="@apartment.GateNumber" type="text" class="form-control" placeholder="Gate Number">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
             </div>
-            <div class="col form-group">
-                <input asp-for="NumberOfApartments" type="number" class="form-control" placeholder="Number of apatments">
-            </div>
-            <div class="col form-group">
-                <input asp-for="NumberOfGates" type="number" class="form-control" placeholder="Number of gates">
-            </div>
         </div>
-        @if (Model.Apartments != null)
-        {
-            <table class="table table-sm table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Apartment Number</th>
-                        <th scope="col">Gate Number</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{ var count = 0; }
-                    @foreach (var apartment in Model.Apartments)
-                    {
-                        count++;
-                        <tr>
-                            <th scope="row">@count</th>
-                            <td>
-                                <div class="form-group">
-                                    <input asp-for="Apartments[count - 1].ApartmentNumber" value="@apartment.ApartmentNumber" type="text" class="form-control" placeholder="Apartment Number">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-group">
-                                    <input asp-for="Apartments[count - 1].GateNumber" value="@apartment.GateNumber" type="text" class="form-control" placeholder="Gate Number">
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        <button type="submit" class="btn btn-primary btn-block">Add</button>
-    </form>
+    </div>
 </section>
-

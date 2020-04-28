@@ -7,44 +7,52 @@
 @await Html.PartialAsync("_LayoutHeader")
 
 <section>
-    <table class="table table-sm table-hover">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Country</th>
-                <th scope="col">State</th>
-                <th scope="col">City</th>
-                <th scope="col">Street</th>
-                <th scope="col">Building Number</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="row mx-1 my-1">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-centered mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Country</th>
+                                <th>State</th>
+                                <th>City</th>
+                                <th>Street</th>
+                                <th>Building Number</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-            @{ var count = 0; }
-            @foreach (var building in Model.Buildings)
-            {
-                count++;
-                <tr>
-                    <th scope="row">@count</th>
-                    <td>@building.Country</td>
-                    <td>@building.State</td>
-                    <td>@building.City</td>
-                    <td>@building.Street</td>
-                    <td>@building.BuildingNumber</td>
-                    <td>
-                        <a asp-controller="Building" asp-action="Details" asp-route-id="@building.Id" class="btn btn-link text-info">
-                            <i class="fas fa-info"></i>
-                        </a>
-                        <a asp-controller="Building" asp-action="Edit" asp-route-id="@building.Id" class="btn btn-link text-warning">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <a asp-controller="Building" asp-action="Delete" asp-route-buildingmanagerid="@building.BuildingManagerId" asp-route-buildingid="@building.Id" class="btn btn-link text-danger">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                            @{ var count = 0; }
+                            @foreach (var building in Model.Buildings)
+                            {
+                                count++;
+                                <tr>
+                                    <td scope="row">@count</td>
+                                    <td>@building.Country</td>
+                                    <td>@building.State</td>
+                                    <td>@building.City</td>
+                                    <td>@building.Street</td>
+                                    <td>@building.BuildingNumber</td>
+                                    <td>
+                                        <a asp-controller="Building" asp-action="Details" asp-route-id="@building.Id" class="btn btn-link text-info" data-toggle="tooltip" data-placement="top" title="Details">
+                                            <i class="fas fa-info"></i>
+                                        </a>
+                                        <a asp-controller="Building" asp-action="Edit" asp-route-id="@building.Id" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-controller="Building" asp-action="Delete" asp-route-buildingmanagerid="@building.BuildingManagerId" asp-route-buildingid="@building.Id" class="btn btn-link text-danger" data-toggle="tooltip" data-placement="top" title="Delete">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
