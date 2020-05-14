@@ -147,25 +147,30 @@
                         </thead>
                         <tbody>
                             @{ count = 0; }
+                            @{ var roleNames = new List<string>(); }
                             @foreach (var role in roleManager.Roles)
+                            {
+                                roleNames.Add(role.Name);
+                            }
+                            @foreach (var roleName in roleNames)
                             {
                                 count++;
                                 <tr>
                                     <td scope="row">@count</td>
-                                    <td>@role.Name</td>
+                                    <td>@roleName</td>
                                     <td>
-                                        @*@if (userManager.IsInRoleAsync(Model, role.Name).Result)
+                                        @if (userManager.IsInRoleAsync(Model, roleName).Result)
                                         {
-                                            <a asp-controller="User" asp-action="RemoveFromRole" asp-route-userid="@Model.Id" asp-route-rolename="@role.Name" class="btn btn-link text-danger" data-toggle="tooltip" data-placement="top" title="Remove from role">
+                                            <a asp-controller="User" asp-action="RemoveFromRole" asp-route-userid="@Model.Id" asp-route-rolename="@roleName" class="btn btn-link text-danger" data-toggle="tooltip" data-placement="top" title="Remove from role">
                                                 <i class="fas fa-lock"></i>
                                             </a>
                                         }
-                                        @if (!userManager.IsInRoleAsync(Model, role.Name).Result)
+                                        @if (!userManager.IsInRoleAsync(Model, roleName).Result)
                                         {
-                                            <a asp-controller="User" asp-action="AddToRole" asp-route-userid="@Model.Id" asp-route-rolename="@role.Name" class="btn btn-link text-success" data-toggle="tooltip" data-placement="top" title="Add to role">
+                                            <a asp-controller="User" asp-action="AddToRole" asp-route-userid="@Model.Id" asp-route-rolename="@roleName" class="btn btn-link text-success" data-toggle="tooltip" data-placement="top" title="Add to role">
                                                 <i class="fas fa-lock-open"></i>
                                             </a>
-                                        }*@
+                                        }
                                     </td>
                                 </tr>
                             }

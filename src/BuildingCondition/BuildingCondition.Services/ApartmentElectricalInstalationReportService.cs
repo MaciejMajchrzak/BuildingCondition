@@ -46,6 +46,11 @@ namespace BuildingCondition.Services
             return context.ApartmentElectricalInstalationReports.ToList();
         }
 
+        public IList<ApartmentElectricalInstalationReport> GetAllByApartmentId(int id)
+        {
+            return context.ApartmentElectricalInstalationReports.Where(a => a.Id == id).ToList();
+        }
+
         public bool Update(ApartmentElectricalInstalationReport apartmentElectricalInstalationReport)
         {
             context.ApartmentElectricalInstalationReports.Update(apartmentElectricalInstalationReport);

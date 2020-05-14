@@ -1,0 +1,140 @@
+﻿@model BuildingCondition.Db.Models.ApartmentGasInstalationReport
+
+@{
+    ViewData["Title"] = "AddGasReport";
+}
+
+@await Html.PartialAsync("_LayoutHeader")
+
+<section>
+    <div class="row mx-1 my-1">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <p>Add gas report</p>
+                    <form asp-controller="Apartment" asp-action="AddGasReport" method="post">
+                        <input type="hidden" asp-for="ApartmentId" />
+                        <input type="hidden" asp-for="UserId" />
+                        
+                        <div class="form-group">
+                            <input asp-for="DateOfInspection" type="date" class="form-control" placeholder="Date Of Inspection" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <input asp-for="ForPremisesOrCollectiveOrSeal" type="checkbox" class="form-check-input" id="gasReportCheck1" placeholder="For Premises Or Collective Or Seal">
+                            <label class="form-check-label" for="gasReportCheck1">For premises or collective or seal</label>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="AssessmentOfGasMeterAccuracy" type="checkbox" class="form-control" placeholder="Assessment Of Gas Meter Accuracy">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="TheGasMeterConnectionsWithTheInstallation" type="checkbox" class="form-control" placeholder="The Gas Meter Connections With The Installation">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="VentilationOfTheGasMeterCabinet" type="checkbox" class="form-control" placeholder="Ventilation Of The Gas Meter Cabinet">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="SecuringTheGasMeterAgainstUnauthorizedAccessAndAccessToTheGasMeter" type="checkbox" class="form-control" placeholder="Securing The Gas Meter Against Unauthorized Access And Access To The Gas Meter">
+                        </div>
+
+                        <div class="form-group">
+                            <input asp-for="ConditionOfPipeWallsAndFittings" type="checkbox" class="form-control" placeholder="Condition Of Pipe Walls And Fittings">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="InstallationTightness" type="checkbox" class="form-control" placeholder="Installation Tightness">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="ConditionOfAnticorrosiveCoating" type="checkbox" class="form-control" placeholder="Condition Of Anticorrosive Coating">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="IntersectionsOfGasInstallationsWithOtherPipes" type="checkbox" class="form-control" placeholder="Intersections Of Gas Installations With Other Pipes">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="FasteningGasInstallationsAndPipes" type="checkbox" class="form-control" placeholder="Fastening Gas Installations And Pipes">
+                        </div>
+
+                        <div class="form-group">
+                            <input asp-for="CookerFittingsAccessibilityToTheShutoffValve" type="checkbox" class="form-control" placeholder="Cooker Fittings Accessibility To The Shutoff Valve">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="CookerFittingsTheTightnessOfTheGasShutoffValve" type="checkbox" class="form-control" placeholder="Cooker Fittings The Tightness Of The Gas Shutoff Valve">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="CookerFittingsOperationOfTheGasShutoffValve" type="checkbox" class="form-control" placeholder="Cooker Fittings Operation Of The Gas Shutoff Valve">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="CookerFittingsRoomVentilationWithGasReceiverVentilationGrille" type="checkbox" class="form-control" placeholder="Cooker Fittings Room Ventilation With Gas Receiver Ventilation Grille">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="CookerFittingsTechnicalConditionOfGasDevicesAndConnectionsToFlueGasDucts" type="checkbox" class="form-control" placeholder="Cooker Fittings Technical Condition Of Gas Devices And Connections To Flue Gas Ducts">
+                        </div>
+
+                        <div class="form-group">
+                            <input asp-for="BathroomStoveFittingsAccessibilityToTheShutoffValve" type="checkbox" class="form-control" placeholder="Bathroom Stove Fittings Accessibility To The Shutoff Valve">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="BathroomStoveFittingsTheTightnessOfTheGasShutoffValve" type="checkbox" class="form-control" placeholder="Bathroom Stove Fittings The TightnessOf The Gas Shutoff Valve">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="BathroomStoveFittingsOperationOfTheGasShutoffValve" type="checkbox" class="form-control" placeholder="Bathroom Stove Fittings Operation Of The Gas Shutoff Valve">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="BathroomStoveFittingsRoomVentilationWithGasReceiverVentilationGrille" type="checkbox" class="form-control" placeholder="Bathroom Stove Fittings Room Ventilation With Gas Receiver Ventilation Grille">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="BathroomStoveFittingsTechnicalConditionOfGasDevicesAndConnectionsToFlueGasDucts" type="checkbox" class="form-control" placeholder="Bathroom Stove Fittings Technical Condition Of Gas Devices And Connections To Flue Gas Ducts">
+                        </div>
+
+                        <div class="form-group">
+                            <input asp-for="KitchenStoveFittingsAccessibilityToTheShutoffValve" type="checkbox" class="form-control" placeholder="Kitchen Stove Fittings Accessibility To The Shutoff Valve">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="KitchenStoveFittingsTheTightnessOfTheGasShutoffValve" type="checkbox" class="form-control" placeholder="Kitchen Stove Fittings The Tightness Of The Gas Shutoff Valve">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="KitchenStoveFittingsOperationOfTheGasShutoffValve" type="checkbox" class="form-control" placeholder="Kitchen Stove Fittings Operation Of The Gas Shutoff Valve">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="KitchenStoveFittingsRoomVentilationWithGasReceiverVentilationGrille" type="checkbox" class="form-control" placeholder="Kitchen Stove Fittings Room Ventilation With Gas Receiver Ventilation Grille">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="KitchenStoveFittingsTechnicalConditionOfGasDevicesAndConnectionsToFlueGasDucts" type="checkbox" class="form-control" placeholder="Kitchen Stove Fittings Technical Condition Of Gas Devices And Connections To Flue Gas Ducts">
+                        </div>
+
+                        <div class="form-group">
+                            <input asp-for="GaseousFuelConcentration" type="text" class="form-control" placeholder="Gaseous Fuel Concentration">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Location" type="text" class="form-control" placeholder="Location">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="DeadlineForDeletion" type="date" class="form-control" placeholder="Deadline For Deletion">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="ShutOffTheGasSupply" type="checkbox" class="form-control" placeholder="Shut Off The Gas Supply">
+                        </div>
+
+                        <div class="form-group">
+                            <input asp-for="CommentsAndPostInspectionRecommendationsToBeMadeByTheManagerOrOwner" type="text" class="form-control" placeholder="Comments And Post Inspection Recommendations To Be Made By The Manager Or Owner">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="CommentsAndPostInspectionRecommendationsToBeMadeByTheGasSupplier" type="text" class="form-control" placeholder="Comments And Post Inspection Recommendations To Be Made By The Gas Supplier">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="CommentsAndPostInspectionRecommendationsToBeMadeByTheApartmentUser" type="text" class="form-control" placeholder="Comments And Post Inspection Recommendations To Be Made By The Apartment User">
+                        </div>
+
+                        <div class="form-group">
+                            <input asp-for="FurtherOperationOfTheInstallationInThePremises" type="checkbox" class="form-control" placeholder="Further Operation Of The Installation In The Premises">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="DateOfNextInspection" type="date" class="form-control" placeholder="Date Of Next Inspection" disabled>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

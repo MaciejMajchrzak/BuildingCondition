@@ -9,6 +9,7 @@ namespace BuildingCondition.Interfaces
         bool Delete(int id);
         ApartmentElectricalInstalationReport Get(int id);
         IList<ApartmentElectricalInstalationReport> GetAll();
+        IList<ApartmentElectricalInstalationReport> GetAllByApartmentId(int id);
         bool Update(ApartmentElectricalInstalationReport apartmentElectricalInstalationReport);
     }
 }

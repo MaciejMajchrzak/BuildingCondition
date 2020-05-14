@@ -1,4 +1,4 @@
-﻿@model BuildingCondition.Db.Models.GasQualificationCertificate
+﻿@model BuildingCondition.Db.Models.GasDetector
 
 @{
     ViewData["Title"] = "EditGas";
@@ -11,18 +11,20 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
-                    <p>Edit gas certificate</p>
-                    <form asp-controller="Certificate" asp-action="AddElectrical" method="post">
+                    <p>Edit gas detector</p>
+                    <form asp-controller="Device" asp-action="EditGas" method="post">
                         <input type="hidden" asp-for="Id" />
-                        <input type="hidden" asp-for="UserId" />
                         <div class="form-group">
-                            <input asp-for="CertificateNumber" type="text" class="form-control" placeholder="Certificate number">
+                            <input asp-for="Model" type="text" class="form-control" placeholder="Model">
                         </div>
                         <div class="form-group">
-                            <input asp-for="ExpirationDate" type="date" class="form-control">
+                            <input asp-for="SerialNumber" type="text" class="form-control" placeholder="Serial number">
                         </div>
                         <div class="form-group">
-                            <input asp-for="ReleaseDate" type="date" class="form-control">
+                            <input asp-for="LastCalibrationDate" type="date" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="NextCalibrationDate" type="date" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>
@@ -31,3 +33,4 @@
         </div>
     </div>
 </section>
+

@@ -37,15 +37,20 @@ namespace BuildingCondition.Mvc.Controllers
         [HttpPost]
         public IActionResult AddElectrical(ElectricalQualificationCertificate electricalQualificationCertificate)
         {
-            electricalQualificationCertificateService.Create(electricalQualificationCertificate);
+            if(ModelState.IsValid)
+            {
+                electricalQualificationCertificateService.Create(electricalQualificationCertificate);
 
-            User user = userService.Get(electricalQualificationCertificate.UserId);
+                User user = userService.Get(electricalQualificationCertificate.UserId);
 
-            user.ElectricalQualificationCertificates = electricalQualificationCertificateService.GetAllByUserId(user.Id);
+                user.ElectricalQualificationCertificates = electricalQualificationCertificateService.GetAllByUserId(user.Id);
 
-            user.GasQualificationCertificates = gasQualificationCertificateService.GetAllByUserId(user.Id);
+                user.GasQualificationCertificates = gasQualificationCertificateService.GetAllByUserId(user.Id);
 
-            return RedirectToAction("Edit", "User", user);
+                return RedirectToAction("Edit", "User", user);
+            }
+
+            return View(electricalQualificationCertificate);
         }
 
         /// <param name="id">User.Id</param>
@@ -65,15 +70,20 @@ namespace BuildingCondition.Mvc.Controllers
         [HttpPost]
         public IActionResult AddGas(GasQualificationCertificate gasQualificationCertificate)
         {
-            gasQualificationCertificateService.Create(gasQualificationCertificate);
+            if(ModelState.IsValid)
+            {
+                gasQualificationCertificateService.Create(gasQualificationCertificate);
 
-            User user = userService.Get(gasQualificationCertificate.UserId);
+                User user = userService.Get(gasQualificationCertificate.UserId);
 
-            user.ElectricalQualificationCertificates = electricalQualificationCertificateService.GetAllByUserId(user.Id);
+                user.ElectricalQualificationCertificates = electricalQualificationCertificateService.GetAllByUserId(user.Id);
 
-            user.GasQualificationCertificates = gasQualificationCertificateService.GetAllByUserId(user.Id);
+                user.GasQualificationCertificates = gasQualificationCertificateService.GetAllByUserId(user.Id);
 
-            return RedirectToAction("Edit", "User", user);
+                return RedirectToAction("Edit", "User", user);
+            }
+
+            return View(gasQualificationCertificate);
         }
 
         [HttpGet]
@@ -120,29 +130,39 @@ namespace BuildingCondition.Mvc.Controllers
         [HttpPost]
         public IActionResult EditElectrical(ElectricalQualificationCertificate electricalQualificationCertificate)
         {
-            electricalQualificationCertificateService.Update(electricalQualificationCertificate);
+            if(ModelState.IsValid)
+            {
+                electricalQualificationCertificateService.Update(electricalQualificationCertificate);
 
-            User user = userService.Get(electricalQualificationCertificate.UserId);
+                User user = userService.Get(electricalQualificationCertificate.UserId);
 
-            user.ElectricalQualificationCertificates = electricalQualificationCertificateService.GetAllByUserId(user.Id);
+                user.ElectricalQualificationCertificates = electricalQualificationCertificateService.GetAllByUserId(user.Id);
 
-            user.GasQualificationCertificates = gasQualificationCertificateService.GetAllByUserId(user.Id);
+                user.GasQualificationCertificates = gasQualificationCertificateService.GetAllByUserId(user.Id);
 
-            return RedirectToAction("Edit", "User", user);
+                return RedirectToAction("Edit", "User", user);
+            }
+
+            return View(electricalQualificationCertificate);
         }
 
         [HttpPost]
         public IActionResult EditGas(GasQualificationCertificate gasQualificationCertificate)
         {
-            gasQualificationCertificateService.Update(gasQualificationCertificate);
+            if(ModelState.IsValid)
+            {
+                gasQualificationCertificateService.Update(gasQualificationCertificate);
 
-            User user = userService.Get(gasQualificationCertificate.UserId);
+                User user = userService.Get(gasQualificationCertificate.UserId);
 
-            user.ElectricalQualificationCertificates = electricalQualificationCertificateService.GetAllByUserId(user.Id);
+                user.ElectricalQualificationCertificates = electricalQualificationCertificateService.GetAllByUserId(user.Id);
 
-            user.GasQualificationCertificates = gasQualificationCertificateService.GetAllByUserId(user.Id);
+                user.GasQualificationCertificates = gasQualificationCertificateService.GetAllByUserId(user.Id);
 
-            return RedirectToAction("Edit", "User", user);
+                return RedirectToAction("Edit", "User", user);
+            }
+
+            return View(gasQualificationCertificate);
         }
     }
 }
