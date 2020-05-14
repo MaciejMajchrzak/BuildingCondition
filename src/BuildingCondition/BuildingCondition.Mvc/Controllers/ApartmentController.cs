@@ -1,19 +1,30 @@
 ﻿using BuildingCondition.Db.Models;
 using BuildingCondition.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace BuildingCondition.Mvc.Controllers
 {
     public class ApartmentController : Controller
     {
+        private readonly UserManager<IdentityUser> userManager;
+        private readonly IApartmentElectricalInstalationReportService apartmentElectricalInstalationReportService;
+        private readonly IApartmentGasInstalationReportService apartmentGasInstalationReportService;
         private readonly IApartmentService apartmentService;
         private readonly IBuildingManagerService buildingManagerService;
         private readonly IBuildingService buildingService;
 
-        public ApartmentController(IApartmentService _apartmentService,
+        public ApartmentController(UserManager<IdentityUser> _userManager,
+            IApartmentElectricalInstalationReportService _apartmentElectricalInstalationReportService,
+            IApartmentGasInstalationReportService _apartmentGasInstalationReportService,
+            IApartmentService _apartmentService,
             IBuildingManagerService _buildingManagerService,
             IBuildingService _buildingService)
         {
+            userManager = _userManager;
+            apartmentElectricalInstalationReportService = _apartmentElectricalInstalationReportService;
+            apartmentGasInstalationReportService = _apartmentGasInstalationReportService;
             apartmentService = _apartmentService;
             buildingManagerService = _buildingManagerService;
             buildingService = _buildingService;
@@ -51,6 +62,38 @@ namespace BuildingCondition.Mvc.Controllers
         }
 
         [HttpGet]
+        public IActionResult AddGasReport(int id)
+        {
+            ApartmentGasInstalationReport apartmentGasInstalationReport = new ApartmentGasInstalationReport()
+            {
+                Id = id,
+                UserId = userManager.GetUserId(HttpContext.User),
+                DateOfInspection = DateTime.UtcNow,
+                DateOfNextInspection = DateTime.UtcNow.AddYears(1)
+            };
+
+            return View(apartmentGasInstalationReport);
+        }
+
+        [HttpPost]
+        public IActionResult AddGasReport(ApartmentGasInstalationReport apartmentGasInstalationReport)
+        {
+            apartmentGasInstalationReportService.Create(apartmentGasInstalationReport);
+
+            Apartment apartment = apartmentService.Get(apartmentGasInstalationReport.ApartmentId);
+
+            apartment.Building = buildingService.Get(apartment.BuildingId);
+
+            apartment.Building.BuildingManager = buildingManagerService.Get(apartment.Building.BuildingManagerId);
+
+            apartment.ApartmentElectricalInstalationReports = apartmentElectricalInstalationReportService.GetAllByApartmentId(apartment.Id);
+
+            apartment.ApartmentGasInstalationReports = apartmentGasInstalationReportService.GetAllByApartmentId(apartment.Id);
+
+            return RedirectToAction("Details", "Apartment", apartment);
+        }
+
+        [HttpGet]
         public IActionResult Delete(int buildingId, int apartmentId)
         {
             apartmentService.Delete(apartmentId);
@@ -72,6 +115,10 @@ namespace BuildingCondition.Mvc.Controllers
             apartment.Building = buildingService.Get(apartment.BuildingId);
 
             apartment.Building.BuildingManager = buildingManagerService.Get(apartment.Building.BuildingManagerId);
+
+            apartment.ApartmentElectricalInstalationReports = apartmentElectricalInstalationReportService.GetAllByApartmentId(id);
+
+            apartment.ApartmentGasInstalationReports = apartmentGasInstalationReportService.GetAllByApartmentId(id);
 
             return View(apartment);
         }

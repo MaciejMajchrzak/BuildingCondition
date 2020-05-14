@@ -79,21 +79,26 @@
                         </thead>
                         <tbody>
                             @{ count = 0; }
-                            @foreach (var role in roleManager.Roles)
+                            @{ var roleNames = new List<string>(); }
+                            @foreach(var role in roleManager.Roles)
+                            {
+                                roleNames.Add(role.Name);
+                            }
+                            @foreach (var roleName in roleNames)
                             {
                                 count++;
                                 <tr>
                                     <td scope="row">@count</td>
-                                    <td>@role.Name</td>
+                                    <td>@roleName</td>
                                     <td>
-                                        @*@if (userManager.IsInRoleAsync(Model, role.Name).Result)
+                                        @if (Task.Run(() => userManager.IsInRoleAsync(Model, roleName)).Result)
                                         {
-                                            <i class="fas fa-lock-open"></i>
+                                            <i class="fas fa-lock-open text-success"></i>
                                         }
-                                        @if (!userManager.IsInRoleAsync(Model, role.Name).Result)
+                                        else
                                         {
-                                            <i class="fas fa-lock"></i>
-                                        }*@
+                                            <i class="fas fa-lock text-danger"></i>
+                                        }
                                     </td>
                                 </tr>
                             }

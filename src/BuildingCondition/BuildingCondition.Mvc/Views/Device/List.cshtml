@@ -1,0 +1,110 @@
+﻿@model BuildingCondition.Mvc.Models.ViewModels.DeviceViewModels.DeviceListViewModel
+
+@{
+    ViewData["Title"] = "List";
+}
+
+@await Html.PartialAsync("_LayoutHeader")
+
+<section>
+    <div class="row mx-1 my-1">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <p>Electrical installation parameters meters</p>
+                    <div class="row mb-2">
+                        <div class="col-sm-4">
+                            <a asp-controller="Device" asp-action="AddElectrical" class="btn btn-success mb-2">
+                                <i class="fas fa-plus-square"></i>
+                                Add
+                            </a>
+                        </div>
+                    </div>
+                    <table class="table table-centered mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Model</th>
+                                <th>SerialNumber</th>
+                                <th>LastCalibrationDate</th>
+                                <th>NextCalibrationDate</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ var count = 0; }
+                            @foreach (var electricalInstallationParametersMeter in Model.ElectricalInstallationParametersMeters)
+                            {
+                                count++;
+                                <tr>
+                                    <td scope="row">@count</td>
+                                    <td>@electricalInstallationParametersMeter.Model</td>
+                                    <td>@electricalInstallationParametersMeter.SerialNumber</td>
+                                    <td>@electricalInstallationParametersMeter.LastCalibrationDate</td>
+                                    <td>@electricalInstallationParametersMeter.NextCalibrationDate</td>
+                                    <td>
+                                        <a asp-controller="Device" asp-action="EditElectrical" asp-route-id="@electricalInstallationParametersMeter.Id" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-controller="Device" asp-action="DeleteElectrical" asp-route-id="@electricalInstallationParametersMeter.Id" class="btn btn-link text-danger" data-toggle="tooltip" data-placement="top" title="Delete">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <p>Gas detectors</p>
+                    <div class="row mb-2">
+                        <div class="col-sm-4">
+                            <a asp-controller="Device" asp-action="AddGas" class="btn btn-success mb-2">
+                                <i class="fas fa-plus-square"></i>
+                                Add
+                            </a>
+                        </div>
+                    </div>
+                    <table class="table table-centered mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Model</th>
+                                <th>SerialNumber</th>
+                                <th>LastCalibrationDate</th>
+                                <th>NextCalibrationDate</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ count = 0; }
+                            @foreach (var gasDetector in Model.GasDetectors)
+                            {
+                                count++;
+                                <tr>
+                                    <td scope="row">@count</td>
+                                    <td>@gasDetector.Model</td>
+                                    <td>@gasDetector.SerialNumber</td>
+                                    <td>@gasDetector.LastCalibrationDate</td>
+                                    <td>@gasDetector.NextCalibrationDate</td>
+                                    <td>
+                                        <a asp-controller="Device" asp-action="EditGas" asp-route-id="@gasDetector.Id" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-controller="Device" asp-action="DeleteGas" asp-route-id="@gasDetector.Id" class="btn btn-link text-danger" data-toggle="tooltip" data-placement="top" title="Delete">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

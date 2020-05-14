@@ -1,0 +1,34 @@
+﻿@model BuildingCondition.Db.Models.ElectricalInstallationParametersMeter
+
+@{
+    ViewData["Title"] = "EditElectrical";
+}
+
+<section>
+    <div class="row mx-1 my-1">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <p>Edit electrical instalation parameters meter</p>
+                    <form asp-controller="Device" asp-action="EditElectrical" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group">
+                            <input asp-for="Model" type="text" class="form-control" placeholder="Model">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="SerialNumber" type="text" class="form-control" placeholder="Serial number">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="LastCalibrationDate" type="date" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="NextCalibrationDate" type="date" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

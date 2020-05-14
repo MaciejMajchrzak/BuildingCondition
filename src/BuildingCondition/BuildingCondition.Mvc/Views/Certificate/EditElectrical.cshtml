@@ -13,6 +13,7 @@
                 <div class="card-body">
                     <p>Edit electrical certificate</p>
                     <form asp-controller="Certificate" asp-action="AddElectrical" method="post">
+                        <input type="hidden" asp-for="Id" />
                         <input type="hidden" asp-for="UserId" />
                         <div class="form-group">
                             <input asp-for="CertificateNumber" type="text" class="form-control" placeholder="Certificate number">
