@@ -1,10 +1,12 @@
 ﻿using BuildingCondition.Db.Models;
 using BuildingCondition.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
 namespace BuildingCondition.Mvc.Controllers
 {
+    [Authorize(Roles = "ActiveUser")]
     public class CertificateController : Controller
     {
         private readonly IElectricalQualificationCertificateService electricalQualificationCertificateService;
@@ -21,6 +23,7 @@ namespace BuildingCondition.Mvc.Controllers
         }
 
         /// <param name="id">User.Id</param>
+        [Authorize(Roles = "CertificateAddElectrical")]
         [HttpGet]
         public IActionResult AddElectrical(string id)
         {
@@ -34,6 +37,7 @@ namespace BuildingCondition.Mvc.Controllers
             return View(electricalQualificationCertificate);
         }
 
+        [Authorize(Roles = "CertificateAddElectrical")]
         [HttpPost]
         public IActionResult AddElectrical(ElectricalQualificationCertificate electricalQualificationCertificate)
         {
@@ -54,6 +58,7 @@ namespace BuildingCondition.Mvc.Controllers
         }
 
         /// <param name="id">User.Id</param>
+        [Authorize(Roles = "CertificateAddGas")]
         [HttpGet]
         public IActionResult AddGas(string id)
         {
@@ -67,6 +72,7 @@ namespace BuildingCondition.Mvc.Controllers
             return View(gasQualificationCertificate);
         }
 
+        [Authorize(Roles = "CertificateAddGas")]
         [HttpPost]
         public IActionResult AddGas(GasQualificationCertificate gasQualificationCertificate)
         {
@@ -86,6 +92,7 @@ namespace BuildingCondition.Mvc.Controllers
             return View(gasQualificationCertificate);
         }
 
+        [Authorize(Roles = "CertificateDeleteElectrical")]
         [HttpGet]
         public IActionResult DeleteElectrical(int electricalId, string userId)
         {
@@ -100,6 +107,7 @@ namespace BuildingCondition.Mvc.Controllers
             return RedirectToAction("Edit", "User", user);
         }
 
+        [Authorize(Roles = "CertificateDeleteGas")]
         [HttpGet]
         public IActionResult DeleteGas(int gasId, string userId)
         {
@@ -114,19 +122,21 @@ namespace BuildingCondition.Mvc.Controllers
             return RedirectToAction("Edit", "User", user);
         }
 
-
+        [Authorize(Roles = "CertificateEditElectrical")]
         [HttpGet]
         public IActionResult EditElectrical(int id)
         {
             return View(electricalQualificationCertificateService.Get(id));
         }
 
+        [Authorize(Roles = "CertificateEditElectrical")]
         [HttpGet]
         public IActionResult EditGas(int id)
         {
             return View(gasQualificationCertificateService.Get(id));
         }
 
+        [Authorize(Roles = "CertificateEditGas")]
         [HttpPost]
         public IActionResult EditElectrical(ElectricalQualificationCertificate electricalQualificationCertificate)
         {
@@ -146,6 +156,7 @@ namespace BuildingCondition.Mvc.Controllers
             return View(electricalQualificationCertificate);
         }
 
+        [Authorize(Roles = "CertificateEditGas")]
         [HttpPost]
         public IActionResult EditGas(GasQualificationCertificate gasQualificationCertificate)
         {

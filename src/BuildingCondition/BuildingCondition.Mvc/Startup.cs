@@ -75,8 +75,13 @@ namespace BuildingCondition.Mvc
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Dashboard}/{action=Index}/{id?}");
+                    pattern: "{controller=Account}/{action=Login}/{id?}");
             });
         }
+    }
+
+    public static class Seed
+    {
+
     }
 }

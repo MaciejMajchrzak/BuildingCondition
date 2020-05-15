@@ -9,6 +9,7 @@ namespace BuildingCondition.Interfaces
         bool Delete(int id);
         GasDetector Get(int id);
         IList<GasDetector> GetAll();
+        IList<GasDetector> GetAllWithValidCalibration();
         bool Update(GasDetector gasDetector);
     }
 }

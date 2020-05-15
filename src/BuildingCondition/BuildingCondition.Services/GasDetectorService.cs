@@ -1,6 +1,7 @@
 ﻿using BuildingCondition.Db.Context;
 using BuildingCondition.Db.Models;
 using BuildingCondition.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -44,6 +45,11 @@ namespace BuildingCondition.Services
         public IList<GasDetector> GetAll()
         {
             return context.GasDetectors.ToList();
+        }
+
+        public IList<GasDetector> GetAllWithValidCalibration()
+        {
+            return context.GasDetectors.Where(a => a.NextCalibrationDate >= DateTime.UtcNow).ToList();
         }
 
         public bool Update(GasDetector gasDetector)

@@ -12,7 +12,7 @@
             <div class="card">
                 <div class="card-body">
                     <p>@Model.BuildingManager.Name</p>
-                    <p> @Model.Country @Model.State @Model.City @Model.Street @Model.BuildingNumber</p>
+                    <p>@Model.Country @Model.State @Model.City @Model.Street @Model.BuildingNumber</p>
                 </div>
             </div>
         </div>
@@ -22,14 +22,17 @@
             <div class="card">
                 <div class="card-body">
                     <p>Apartments</p>
-                    <div class="row mb-2">
-                        <div class="col-sm-4">
-                            <a asp-controller="Apartment" asp-action="Add" class="btn btn-success mb-2">
-                                <i class="fas fa-plus-square"></i>
-                                Add
-                            </a>
+                    @if (User.IsInRole("ApartmentAdd"))
+                    {
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <a asp-controller="Apartment" asp-action="Add" class="btn btn-success mb-2">
+                                    <i class="fas fa-plus-square"></i>
+                                    Add
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    }
                     <table class="table table-centered mb-0">
                         <thead>
                             <tr>
@@ -49,15 +52,24 @@
                                     <td>@apartment.ApartmentNumber</td>
                                     <td>@apartment.GateNumber</td>
                                     <td>
-                                        <a asp-controller="Apartment" asp-action="Details" asp-route-id="@apartment.Id" class="btn btn-link text-info" data-toggle="tooltip" data-placement="top" title="Details">
-                                            <i class="fas fa-info"></i>
-                                        </a>
-                                        <a asp-controller="Apartment" asp-action="Edit" asp-route-id="@apartment.Id" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="top" title="Edit">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a asp-controller="Apartment" asp-action="Delete" asp-route-buildingid="@apartment.BuildingId" asp-route-apartmentid="@apartment.Id" class="btn btn-link text-danger" data-toggle="tooltip" data-placement="top" title="Delete">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </a>
+                                        @if (User.IsInRole("ApartmentDetails"))
+                                        {
+                                            <a asp-controller="Apartment" asp-action="Details" asp-route-id="@apartment.Id" class="btn btn-link text-info" data-toggle="tooltip" data-placement="top" title="Details">
+                                                <i class="fas fa-info"></i>
+                                            </a>
+                                        }
+                                        @if (User.IsInRole("ApartmentEdit"))
+                                        {
+                                            <a asp-controller="Apartment" asp-action="Edit" asp-route-id="@apartment.Id" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        }
+                                        @if (User.IsInRole("ApartmentDelete"))
+                                        {
+                                            <a asp-controller="Apartment" asp-action="Delete" asp-route-buildingid="@apartment.BuildingId" asp-route-apartmentid="@apartment.Id" class="btn btn-link text-danger" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        }
                                     </td>
                                 </tr>
                             }
@@ -70,14 +82,17 @@
             <div class="card">
                 <div class="card-body">
                     <p>Electrical reports</p>
-                    <div class="row mb-2">
-                        <div class="col-sm-4">
-                            <a asp-controller="Building" asp-action="AddElectricalReport" class="btn btn-success mb-2">
-                                <i class="fas fa-plus-square"></i>
-                                Add
-                            </a>
+                    @if (User.IsInRole("ApartmentDelete"))
+                    {
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <a asp-controller="Building" asp-action="AddElectricalReport" class="btn btn-success mb-2">
+                                    <i class="fas fa-plus-square"></i>
+                                    Add
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
@@ -85,14 +100,17 @@
             <div class="card">
                 <div class="card-body">
                     <p>Gas reports</p>
-                    <div class="row mb-2">
-                        <div class="col-sm-4">
-                            <a asp-controller="Building" asp-action="AddGasReport" class="btn btn-success mb-2">
-                                <i class="fas fa-plus-square"></i>
-                                Add
-                            </a>
+                    @if (User.IsInRole("ApartmentDelete"))
+                    {
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <a asp-controller="Building" asp-action="AddGasReport" class="btn btn-success mb-2">
+                                    <i class="fas fa-plus-square"></i>
+                                    Add
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>

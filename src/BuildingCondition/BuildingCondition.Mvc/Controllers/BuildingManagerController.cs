@@ -1,9 +1,11 @@
 ﻿using BuildingCondition.Db.Models;
 using BuildingCondition.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuildingCondition.Mvc.Controllers
 {
+    [Authorize(Roles = "ActiveUser")]
     public class BuildingManagerController : Controller
     {
         private readonly IBuildingManagerService buildingManagerService;
@@ -16,12 +18,14 @@ namespace BuildingCondition.Mvc.Controllers
             buildingService = _buildingService;
         }
 
+        [Authorize(Roles = "BuildingManagerAdd")]
         [HttpGet]
         public IActionResult Add()
         {
             return View();
         }
 
+        [Authorize(Roles = "BuildingManagerAdd")]
         [HttpPost]
         public IActionResult Add(BuildingManager buildingManager)
         {
@@ -36,6 +40,7 @@ namespace BuildingCondition.Mvc.Controllers
             return View(buildingManager);
         }
 
+        [Authorize(Roles = "BuildingManagerDelete")]
         [HttpGet]
         public IActionResult Delete(int id)
         {
@@ -44,6 +49,7 @@ namespace BuildingCondition.Mvc.Controllers
             return RedirectToAction("List");
         }
 
+        [Authorize(Roles = "BuildingManagerDetails")]
         [HttpGet]
         public IActionResult Details(int id)
         {
@@ -54,12 +60,14 @@ namespace BuildingCondition.Mvc.Controllers
             return View(buildingManager);
         }
 
+        [Authorize(Roles = "BuildingManagerEdit")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
             return View(buildingManagerService.Get(id));
         }
 
+        [Authorize(Roles = "BuildingManagerEdit")]
         [HttpPost]
         public IActionResult Edit(BuildingManager buildingManager)
         {
@@ -73,6 +81,7 @@ namespace BuildingCondition.Mvc.Controllers
             return View(buildingManager);
         }
 
+        [Authorize(Roles = "BuildingManagerList")]
         [HttpGet]
         public IActionResult List()
         {

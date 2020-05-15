@@ -148,7 +148,7 @@
                         <tbody>
                             @{ count = 0; }
                             @{ var roleNames = new List<string>(); }
-                            @foreach (var role in roleManager.Roles)
+                            @foreach (var role in roleManager.Roles.OrderBy(a => a.Name))
                             {
                                 roleNames.Add(role.Name);
                             }

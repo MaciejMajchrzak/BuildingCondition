@@ -1,15 +1,10 @@
-﻿@model BuildingCondition.Mvc.Models.ViewModels.ApartmentViewModels.ApartmentAddGasReportViewModel
+﻿@model BuildingCondition.Mvc.Models.ViewModels.ApartmentViewModels.ApartmentEditGasReportViewModel
 
 @{
-    ViewData["Title"] = "AddGasReport";
+    ViewData["Title"] = "EditGasReport";
 }
 
 @await Html.PartialAsync("_LayoutHeader")
-
-@{
-    var aspAction = "AddGasReport";
-    if (Model.Id != 0) { aspAction = "AddGasReportConfirm"; }
-}
 
 <section>
     <div class="row mx-1 my-1">
@@ -17,7 +12,8 @@
             <div class="card ">
                 <div class="card-body">
                     <p>Add gas report</p>
-                    <form asp-controller="Apartment" asp-action="@aspAction" method="post">
+                    <form asp-controller="Apartment" asp-action="EditGasReport" method="post">
+                        <input type="hidden" asp-for="Id" />
                         <input type="hidden" asp-for="ApartmentId" />
                         <input type="hidden" asp-for="UserId" />
 
@@ -204,7 +200,7 @@
                             <input asp-for="DateOfNextInspection" type="date" class="form-control" readonly>
                         </div>
 
-                        <button type="submit" class="btn btn-success">Add</button>
+                        <button type="submit" class="btn btn-success">Edit</button>
                     </form>
                 </div>
             </div>

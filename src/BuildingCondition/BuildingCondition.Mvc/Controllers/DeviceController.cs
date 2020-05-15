@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BuildingCondition.Db.Models;
+﻿using BuildingCondition.Db.Models;
 using BuildingCondition.Interfaces;
 using BuildingCondition.Mvc.Models.ViewModels.DeviceViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuildingCondition.Mvc.Controllers
 {
+    [Authorize(Roles = "ActiveUser")]
     public class DeviceController : Controller
     {
         private readonly IElectricalInstallationParametersMeterService electricalInstallationParametersMeterService;
@@ -21,12 +19,14 @@ namespace BuildingCondition.Mvc.Controllers
             gasDetectorService = _gasDetectorService;
         }
 
+        [Authorize(Roles = "DeviceAddElectrical")]
         [HttpGet]
         public IActionResult AddElectrical()
         {
             return View();
         }
 
+        [Authorize(Roles = "DeviceAddElectrical")]
         [HttpPost]
         public IActionResult AddElectrical(ElectricalInstallationParametersMeter electricalInstallationParametersMeter)
         {
@@ -40,12 +40,14 @@ namespace BuildingCondition.Mvc.Controllers
             return View(electricalInstallationParametersMeter);
         }
 
+        [Authorize(Roles = "DeviceAddGas")]
         [HttpGet]
         public IActionResult AddGas()
         {
             return View();
         }
 
+        [Authorize(Roles = "DeviceAddGas")]
         [HttpPost]
         public IActionResult AddGas(GasDetector gasDetector)
         {
@@ -59,6 +61,7 @@ namespace BuildingCondition.Mvc.Controllers
             return View();
         }
 
+        [Authorize(Roles = "DeviceDeleteElectrical")]
         [HttpGet]
         public IActionResult DeleteElectrical(int id)
         {
@@ -67,6 +70,7 @@ namespace BuildingCondition.Mvc.Controllers
             return RedirectToAction("List");
         }
 
+        [Authorize(Roles = "DeviceDeleteGas")]
         [HttpGet]
         public IActionResult DeleteGas(int id)
         {
@@ -75,12 +79,14 @@ namespace BuildingCondition.Mvc.Controllers
             return RedirectToAction("List");
         }
 
+        [Authorize(Roles = "DeviceEditElectrical")]
         [HttpGet]
         public IActionResult EditElectrical(int id)
         {
             return View(electricalInstallationParametersMeterService.Get(id));
         }
 
+        [Authorize(Roles = "DeviceEditElectrical")]
         [HttpPost]
         public IActionResult EditElectrical(ElectricalInstallationParametersMeter electricalInstallationParametersMeter)
         {
@@ -94,12 +100,14 @@ namespace BuildingCondition.Mvc.Controllers
             return View(electricalInstallationParametersMeter);
         }
 
+        [Authorize(Roles = "DeviceEditGas")]
         [HttpGet]
         public IActionResult EditGas(int id)
         {
             return View(gasDetectorService.Get(id));
         }
 
+        [Authorize(Roles = "DeviceEditGas")]
         [HttpPost]
         public IActionResult EditGas(GasDetector gasDetector)
         {
@@ -113,6 +121,7 @@ namespace BuildingCondition.Mvc.Controllers
             return View(gasDetector);
         }
 
+        [Authorize(Roles = "DeviceList")]
         public IActionResult List()
         {
             DeviceListViewModel deviceListViewModel = new DeviceListViewModel();

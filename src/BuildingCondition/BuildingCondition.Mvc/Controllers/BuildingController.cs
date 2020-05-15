@@ -1,11 +1,13 @@
 ﻿using BuildingCondition.Db.Models;
 using BuildingCondition.Interfaces;
 using BuildingCondition.Mvc.Models.ViewModels.BuildingViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 namespace BuildingCondition.Mvc.Controllers
 {
+    [Authorize(Roles = "ActiveUser")]
     public class BuildingController : Controller
     {
         private readonly IApartmentService apartmentService;
@@ -22,6 +24,7 @@ namespace BuildingCondition.Mvc.Controllers
         }
 
         /// <param name="id">BuildingManager.Id</param>
+        [Authorize(Roles = "BuildingAdd")]
         [HttpGet]
         public IActionResult Add(int id)
         {
@@ -33,6 +36,7 @@ namespace BuildingCondition.Mvc.Controllers
             return View(buildingAddViewModel);
         }
 
+        [Authorize(Roles = "BuildingAdd")]
         [HttpPost]
         public IActionResult Add(BuildingAddViewModel buildingAddViewModel)
         {
@@ -54,6 +58,7 @@ namespace BuildingCondition.Mvc.Controllers
             return View(buildingAddViewModel);
         }
 
+        [Authorize(Roles = "BuildingAdd")]
         [HttpPost]
         public IActionResult AddConfirm(BuildingAddViewModel buildingAddViewModel)
         {
@@ -82,6 +87,7 @@ namespace BuildingCondition.Mvc.Controllers
             return RedirectToAction("Add", "Building", buildingAddViewModel);
         }
 
+        [Authorize(Roles = "BuildingDelete")]
         [HttpGet]
         public IActionResult Delete(int buildingManagerId, int buildingId)
         {
@@ -94,6 +100,7 @@ namespace BuildingCondition.Mvc.Controllers
             return RedirectToAction("Details", "BuildingManager", buildingManager);
         }
 
+        [Authorize(Roles = "BuildingDetails")]
         [HttpGet]
         public IActionResult Details(int id)
         {
@@ -107,12 +114,14 @@ namespace BuildingCondition.Mvc.Controllers
             return View(building);
         }
 
+        [Authorize(Roles = "BuildingEdit")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
             return View(buildingService.Get(id));
         }
 
+        [Authorize(Roles = "BuildingEdit")]
         [HttpPost]
         public IActionResult Edit(Building building)
         {
@@ -130,6 +139,7 @@ namespace BuildingCondition.Mvc.Controllers
             return View(building);
         }
 
+        [Authorize(Roles = "BuildingList")]
         [HttpGet]
         public IActionResult List()
         {
