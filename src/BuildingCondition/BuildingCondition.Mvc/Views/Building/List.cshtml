@@ -37,15 +37,24 @@
                                     <td>@building.Street</td>
                                     <td>@building.BuildingNumber</td>
                                     <td>
-                                        <a asp-controller="Building" asp-action="Details" asp-route-id="@building.Id" class="btn btn-link text-info" data-toggle="tooltip" data-placement="top" title="Details">
-                                            <i class="fas fa-info"></i>
-                                        </a>
-                                        <a asp-controller="Building" asp-action="Edit" asp-route-id="@building.Id" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="top" title="Edit">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a asp-controller="Building" asp-action="Delete" asp-route-buildingmanagerid="@building.BuildingManagerId" asp-route-buildingid="@building.Id" class="btn btn-link text-danger" data-toggle="tooltip" data-placement="top" title="Delete">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </a>
+                                        @if (User.IsInRole("BuildingDetails"))
+                                        {
+                                            <a asp-controller="Building" asp-action="Details" asp-route-id="@building.Id" class="btn btn-link text-info" data-toggle="tooltip" data-placement="top" title="Details">
+                                                <i class="fas fa-info"></i>
+                                            </a>
+                                        }
+                                        @if (User.IsInRole("BuildingEdit"))
+                                        {
+                                            <a asp-controller="Building" asp-action="Edit" asp-route-id="@building.Id" class="btn btn-link text-warning" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        }
+                                        @if (User.IsInRole("BuildingDelete"))
+                                        {
+                                            <a asp-controller="Building" asp-action="Delete" asp-route-buildingmanagerid="@building.BuildingManagerId" asp-route-buildingid="@building.Id" class="btn btn-link text-danger" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        }
                                     </td>
                                 </tr>
                             }

@@ -13,6 +13,16 @@
 
 <section>
     <div class="row mx-1 my-1">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <p>@Model.FirstName @Model.LastName</p>
+                    <p>@Model.Email</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mx-1 my-1">
         <div class="col-4">
             <div class="card">
                 <div class="card-body">
@@ -80,7 +90,7 @@
                         <tbody>
                             @{ count = 0; }
                             @{ var roleNames = new List<string>(); }
-                            @foreach(var role in roleManager.Roles)
+                            @foreach(var role in roleManager.Roles.OrderBy(a => a.Name))
                             {
                                 roleNames.Add(role.Name);
                             }

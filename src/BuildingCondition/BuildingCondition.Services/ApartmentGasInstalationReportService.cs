@@ -48,7 +48,7 @@ namespace BuildingCondition.Services
 
         public IList<ApartmentGasInstalationReport> GetAllByApartmentId(int id)
         {
-            return context.ApartmentGasInstalationReports.Where(a => a.Id == id).ToList();
+            return context.ApartmentGasInstalationReports.Where(a => a.ApartmentId == id).ToList();
         }
 
         public bool Update(ApartmentGasInstalationReport apartmentGasInstalationReport)

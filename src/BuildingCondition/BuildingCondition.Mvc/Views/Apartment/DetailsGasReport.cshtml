@@ -1,0 +1,196 @@
+﻿@model BuildingCondition.Db.Models.ApartmentGasInstalationReport
+
+@{
+    ViewData["Title"] = "DetailsGasReport";
+}
+
+@await Html.PartialAsync("_LayoutHeader")
+
+<section>
+    <div class="row mx-1 my-1">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <p>@Model.Apartment.Building.BuildingManager.Name</p>
+                    <p> @Model.Apartment.Building.Country @Model.Apartment.Building.State @Model.Apartment.Building.City @Model.Apartment.Building.Street @Model.Apartment.Building.BuildingNumber / @Model.Apartment.ApartmentNumber</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mx-1 my-1">
+        <div class="col-6 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="gasReportDate1">Date Of Inspection</label>
+                        <input asp-for="DateOfInspection" type="date" class="form-control" id="gasReportDate1" disabled>
+                    </div>
+
+                    <hr />
+
+                    <div class="form-group">
+                        <input asp-for="GasDetector" type="text" class="form-control" placeholder="Gas detector" value="Model: @Model.GasDetector.Model | Serial number: @Model.GasDetector.SerialNumber" disabled>
+                    </div>
+
+                    <hr />
+
+                    <div class="form-check">
+                        <input asp-for="ForPremisesOrCollectiveOrSeal" type="checkbox" class="form-check-input" id="gasReportCheck1" disabled>
+                        <label class="form-check-label" for="gasReportCheck1">For premises or collective or seal</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="AssessmentOfGasMeterAccuracy" type="checkbox" class="form-check-input" id="gasReportCheck2" disabled>
+                        <label class="form-check-label" for="gasReportCheck2">Assessment Of Gas Meter Accuracy</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="TheGasMeterConnectionsWithTheInstallation" type="checkbox" class="form-check-input" id="gasReportCheck3" disabled>
+                        <label class="form-check-label" for="gasReportCheck3">The Gas Meter Connections With The Installation</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="VentilationOfTheGasMeterCabinet" type="checkbox" class="form-check-input" id="gasReportCheck4" disabled>
+                        <label class="form-check-label" for="gasReportCheck4">Ventilation Of The Gas Meter Cabinet</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="SecuringTheGasMeterAgainstUnauthorizedAccessAndAccessToTheGasMeter" type="checkbox" class="form-check-input" id="gasReportCheck5" disabled>
+                        <label class="form-check-label" for="gasReportCheck5">Securing The Gas Meter Against Unauthorized Access And Access To The Gas Meter</label>
+                    </div>
+
+                    <hr />
+
+                    <div class="form-check">
+                        <input asp-for="ConditionOfPipeWallsAndFittings" type="checkbox" class="form-check-input" id="gasReportCheck6" disabled>
+                        <label class="form-check-label" for="gasReportCheck6">Condition Of Pipe Walls And Fittings</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="InstallationTightness" type="checkbox" class="form-check-input" id="gasReportCheck7" disabled>
+                        <label class="form-check-label" for="gasReportCheck7">Installation Tightness</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="ConditionOfAnticorrosiveCoating" type="checkbox" class="form-check-input" id="gasReportCheck8" disabled>
+                        <label class="form-check-label" for="gasReportCheck8">Condition Of Anticorrosive Coating</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="IntersectionsOfGasInstallationsWithOtherPipes" type="checkbox" class="form-check-input" id="gasReportCheck9" disabled>
+                        <label class="form-check-label" for="gasReportCheck9">Intersections Of Gas Installations With Other Pipes</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="FasteningGasInstallationsAndPipes" type="checkbox" class="form-check-input" id="gasReportCheck10" disabled>
+                        <label class="form-check-label" for="gasReportCheck10">Fastening Gas Installations And Pipes</label>
+                    </div>
+
+                    <hr />
+
+                    <div class="form-check">
+                        <input asp-for="CookerFittingsAccessibilityToTheShutoffValve" type="checkbox" class="form-check-input" id="gasReportCheck11" disabled>
+                        <label class="form-check-label" for="gasReportCheck11">Cooker Fittings Accessibility To The Shutoff Valve</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="CookerFittingsTheTightnessOfTheGasShutoffValve" type="checkbox" class="form-check-input" id="gasReportCheck12" disabled>
+                        <label class="form-check-label" for="gasReportCheck12">Cooker Fittings The Tightness Of The Gas Shutoff Valve</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="CookerFittingsOperationOfTheGasShutoffValve" type="checkbox" class="form-check-input" id="gasReportCheck13" disabled>
+                        <label class="form-check-label" for="gasReportCheck13">Cooker Fittings Operation Of The Gas Shutoff Valve</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="CookerFittingsRoomVentilationWithGasReceiverVentilationGrille" type="checkbox" class="form-check-input" id="gasReportCheck14" disabled>
+                        <label class="form-check-label" for="gasReportCheck14">Cooker Fittings Room Ventilation With Gas Receiver Ventilation Grille</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="CookerFittingsTechnicalConditionOfGasDevicesAndConnectionsToFlueGasDucts" type="checkbox" class="form-check-input" id="gasReportCheck15" disabled>
+                        <label class="form-check-label" for="gasReportCheck15">Cooker Fittings Technical Condition Of Gas Devices And Connections To Flue Gas Ducts</label>
+                    </div>
+
+                    <hr />
+
+                    <div class="form-check">
+                        <input asp-for="BathroomStoveFittingsAccessibilityToTheShutoffValve" type="checkbox" class="form-check-input" id="gasReportCheck16" disabled>
+                        <label class="form-check-label" for="gasReportCheck16">Bathroom Stove Fittings Accessibility To The Shutoff Valve</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="BathroomStoveFittingsTheTightnessOfTheGasShutoffValve" type="checkbox" class="form-check-input" id="gasReportCheck17" disabled>
+                        <label class="form-check-label" for="gasReportCheck17">Bathroom Stove Fittings The TightnessOf The Gas Shutoff Valve</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="BathroomStoveFittingsOperationOfTheGasShutoffValve" type="checkbox" class="form-check-input" id="gasReportCheck18" disabled>
+                        <label class="form-check-label" for="gasReportCheck18">Bathroom Stove Fittings Operation Of The Gas Shutoff Valve</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="BathroomStoveFittingsRoomVentilationWithGasReceiverVentilationGrille" type="checkbox" class="form-check-input" id="gasReportCheck19" disabled>
+                        <label class="form-check-label" for="gasReportCheck19">Bathroom Stove Fittings Room Ventilation With Gas Receiver Ventilation Grille</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="BathroomStoveFittingsTechnicalConditionOfGasDevicesAndConnectionsToFlueGasDucts" type="checkbox" class="form-check-input" id="gasReportCheck20" disabled>
+                        <label class="form-check-label" for="gasReportCheck20">Bathroom Stove Fittings Technical Condition Of Gas Devices And Connections To Flue Gas Ducts</label>
+                    </div>
+
+                    <hr />
+
+                    <div class="form-check">
+                        <input asp-for="KitchenStoveFittingsAccessibilityToTheShutoffValve" type="checkbox" class="form-check-input" id="gasReportCheck21" disabled>
+                        <label class="form-check-label" for="gasReportCheck21">Kitchen Stove Fittings Accessibility To The Shutoff Valve</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="KitchenStoveFittingsTheTightnessOfTheGasShutoffValve" type="checkbox" class="form-check-input" id="gasReportCheck22" disabled>
+                        <label class="form-check-label" for="gasReportCheck22">Kitchen Stove Fittings The Tightness Of The Gas Shutoff Valve</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="KitchenStoveFittingsOperationOfTheGasShutoffValve" type="checkbox" class="form-check-input" id="gasReportCheck23" disabled>
+                        <label class="form-check-label" for="gasReportCheck23">Kitchen Stove Fittings Operation Of The Gas Shutoff Valve</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="KitchenStoveFittingsRoomVentilationWithGasReceiverVentilationGrille" type="checkbox" class="form-check-input" id="gasReportCheck24" disabled>
+                        <label class="form-check-label" for="gasReportCheck24">Kitchen Stove Fittings Room Ventilation With Gas Receiver Ventilation Grille</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="KitchenStoveFittingsTechnicalConditionOfGasDevicesAndConnectionsToFlueGasDucts" type="checkbox" class="form-check-input" id="gasReportCheck25" disabled>
+                        <label class="form-check-label" for="gasReportCheck25">Kitchen Stove Fittings Technical Condition Of Gas Devices And Connections To Flue Gas Ducts</label>
+                    </div>
+
+                    <hr />
+
+                    <div class="form-group">
+                        <input asp-for="GaseousFuelConcentration" type="text" class="form-control" placeholder="Gaseous fuel concentration" disabled>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Location" type="text" class="form-control" placeholder="Location" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="gasReportDate2">Deadline for deletion</label>
+                        <input asp-for="DeadlineForDeletion" type="date" class="form-control" id="gasReportDate2" disabled>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="ShutOffTheGasSupply" type="checkbox" class="form-check-input" id="gasReportCheck26" disabled>
+                        <label class="form-check-label" for="gasReportCheck26">Shut off the gas supply</label>
+                    </div>
+
+                    <hr />
+
+                    <div class="form-group">
+                        <input asp-for="CommentsAndPostInspectionRecommendationsToBeMadeByTheManagerOrOwner" type="text" class="form-control" placeholder="Comments and post inspection recommendations to be made by the manager or owner" disabled>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="CommentsAndPostInspectionRecommendationsToBeMadeByTheGasSupplier" type="text" class="form-control" placeholder="Comments and post inspection recommendations to be made by the gas supplier" disabled>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="CommentsAndPostInspectionRecommendationsToBeMadeByTheApartmentUser" type="text" class="form-control" placeholder="Comments and post inspection recommendations to be made by the apartment user" disabled>
+                    </div>
+
+                    <hr />
+
+                    <div class="form-check">
+                        <input asp-for="FurtherOperationOfTheInstallationInThePremises" type="checkbox" class="form-check-input" id="gasReportCheck27" disabled>
+                        <label class="form-check-label" for="gasReportCheck27">Further Operation Of The Installation In The Premises</label>
+                    </div>
+
+                    <hr />
+
+                    <div class="form-group">
+                        <label for="gasReportDate3">Date of next inspection</label>
+                        <input asp-for="DateOfNextInspection" type="date" class="form-control" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
