@@ -46,6 +46,11 @@ namespace BuildingCondition.Services
             return context.BuildingElectricalInstalationReports.ToList();
         }
 
+        public BuildingElectricalInstalationReport GetLatest()
+        {
+            return context.BuildingElectricalInstalationReports.SingleOrDefault();
+        }
+
         public bool Update(BuildingElectricalInstalationReport buildingElectricalInstalationReport)
         {
             context.BuildingElectricalInstalationReports.Update(buildingElectricalInstalationReport);

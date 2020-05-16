@@ -46,6 +46,11 @@ namespace BuildingCondition.Services
             return context.BuildingGasInstalationReports.ToList();
         }
 
+        public BuildingGasInstalationReport GetLatest()
+        {
+            return context.BuildingGasInstalationReports.SingleOrDefault();
+        }
+
         public bool Update(BuildingGasInstalationReport buildingGasInstalationReport)
         {
             context.BuildingGasInstalationReports.Update(buildingGasInstalationReport);

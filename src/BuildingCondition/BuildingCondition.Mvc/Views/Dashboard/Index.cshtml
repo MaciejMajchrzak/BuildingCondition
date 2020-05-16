@@ -1,6 +1,39 @@
-﻿@{
+﻿@model BuildingCondition.Mvc.Models.ViewModels.DashboardViewModels.DashboardIndexViewModel
+
+@{
     ViewData["Title"] = "Index";
 }
 
 @await Html.PartialAsync("_LayoutHeader")
+
+<section>
+    <div class="row mx-1 my-1">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <p>Building managers</p>
+                    <p><strong>@Model.BuildingManagersCount</strong></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <p>Buildings</p>
+                    <p><strong>@Model.BuildingsCount</strong></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <p>Apartments</p>
+                    <p><strong>@Model.ApartmentsCount</strong></p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 

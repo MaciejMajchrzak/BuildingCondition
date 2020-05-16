@@ -51,6 +51,11 @@ namespace BuildingCondition.Services
             return context.ApartmentGasInstalationReports.Where(a => a.ApartmentId == id).ToList();
         }
 
+        public ApartmentGasInstalationReport GetLatest()
+        {
+            return context.ApartmentGasInstalationReports.OrderBy(a => a.DateOfInspection).LastOrDefault();
+        }
+
         public bool Update(ApartmentGasInstalationReport apartmentGasInstalationReport)
         {
             context.ApartmentGasInstalationReports.Update(apartmentGasInstalationReport);
