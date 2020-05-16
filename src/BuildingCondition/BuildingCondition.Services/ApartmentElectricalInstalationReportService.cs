@@ -51,6 +51,11 @@ namespace BuildingCondition.Services
             return context.ApartmentElectricalInstalationReports.Where(a => a.Id == id).ToList();
         }
 
+        public ApartmentElectricalInstalationReport GetLatest()
+        {
+            return context.ApartmentElectricalInstalationReports.SingleOrDefault();
+        }
+
         public bool Update(ApartmentElectricalInstalationReport apartmentElectricalInstalationReport)
         {
             context.ApartmentElectricalInstalationReports.Update(apartmentElectricalInstalationReport);

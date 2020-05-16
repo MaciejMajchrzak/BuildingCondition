@@ -10,6 +10,7 @@ namespace BuildingCondition.Interfaces
         ApartmentGasInstalationReport Get(int id);
         IList<ApartmentGasInstalationReport> GetAll();
         IList<ApartmentGasInstalationReport> GetAllByApartmentId(int id);
+        ApartmentGasInstalationReport GetLatest();
         bool Update(ApartmentGasInstalationReport apartmentGasInstalationReport);
     }
 }

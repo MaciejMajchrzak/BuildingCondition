@@ -9,6 +9,7 @@ namespace BuildingCondition.Interfaces
         bool Delete(int id);
         BuildingGasInstalationReport Get(int id);
         IList<BuildingGasInstalationReport> GetAll();
+        BuildingGasInstalationReport GetLatest();
         bool Update(BuildingGasInstalationReport buildingGasInstalationReport);
     }
 }

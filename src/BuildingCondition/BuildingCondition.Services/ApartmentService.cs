@@ -48,7 +48,7 @@ namespace BuildingCondition.Services
 
         public IList<Apartment> GetAllByBuildingId(int id)
         {
-            return context.Apartments.Where(a => a.BuildingId == id).ToList();
+            return context.Apartments.Where(a => a.BuildingId == id).OrderBy(a => a.ApartmentNumber).ToList();
         }
 
         public bool Update(Apartment apartment)
